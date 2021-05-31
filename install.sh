@@ -75,3 +75,13 @@ pacman -S sl gameconqueror
 # AUR:
 echo "AUR packages: steam, spotify, zoom, vscodium, cava"
 echo "See the ArchWiki on how to install AUR packages."
+
+# Move things to where they need to be
+cp -r .config ~/.config
+cp -r .vim    ~/.vim
+# vim stuff
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+curl -fLo ~/.vim/colors/jellybeans.vim --create-dirs \
+    https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim
+
