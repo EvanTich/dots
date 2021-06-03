@@ -34,14 +34,13 @@ _comp_options+=(globdots) # include hidden files too
 
 # aliases and shortcuts
 # alias vim=nvim
-alias ls="ls --group-directories-first"
+alias ls="ls --color --group-directories-first"
 alias ll="ls -l"
 alias la="ls -la"
 alias update="sudo pacman -Syu"
 
 # highlighting
 eval "$(dircolors)"
-alias ls='ls --color'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 

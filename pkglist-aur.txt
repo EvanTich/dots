@@ -1,0 +1,9 @@
+vscodium
+steam
+spotify
+zoom
+
+# terminal stuff
+lf
+cava
+cbonsai

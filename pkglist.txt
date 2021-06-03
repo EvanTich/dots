@@ -1,0 +1,54 @@
+# important
+git
+base-devel
+picom
+dmenu
+dunst
+kitty
+
+# fonts
+ttc-iosevka
+
+# general usage
+vim
+neovim
+firefox
+discord
+qbittorrent
+
+# utils
+htop
+gotop
+
+# file managers
+exa
+
+# multimedia
+pulseaudio
+playerctl
+feh
+mpv
+cmus
+# mpd
+# ncmpcpp
+zathura
+zathura-cb
+zathura-pdf-mupdf
+flameshot
+newsboat
+
+# development
+nodejs
+npm
+python
+python-pip
+rust
+plantuml
+# dotnet-runtime
+# dotnet-sdk
+
+# other
+python-pywal
+redshift
+sl
+gameconqueror
