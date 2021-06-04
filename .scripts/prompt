@@ -1,0 +1,6 @@
+#!/bin/sh
+# Yes/No prompt with dmenu, running the argument after 
+#  the prompt if "Yes" is selected
+# Example: ` ./prompt "Shutdown?" "shutdown -h now" `
+
+[ $(echo -ne "No\nYes" | dmenu -i -p "$1") == "Yes" ] && $2

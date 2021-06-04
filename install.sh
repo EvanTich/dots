@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Run this script after getting Arch initially installed. 
 # This script installs my most commonly used programs.
