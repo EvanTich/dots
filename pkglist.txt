@@ -5,9 +5,13 @@ picom
 dmenu
 dunst
 kitty
+redshift
 
-# fonts
+# themes/fonts
+python-pywal
 ttc-iosevka
+extra/ttf-hack
+ttf-fantasque-sans-mono
 
 # general usage
 vim
@@ -48,7 +52,5 @@ plantuml
 # dotnet-sdk
 
 # other
-python-pywal
-redshift
 sl
 gameconqueror
