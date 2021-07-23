@@ -22,8 +22,11 @@ cargo install tai
 npm install -g tldr
 
 # Move things to where they need to be
-cp -r .config ~/.config
-cp -r .vim    ~/.vim
+cp -r .config   ~/.config
+cp -r .vim      ~/.vim
+cp -r .scripts  ~/.scripts
+cp    .zshrc    ~/.zshrc
+
 # vim stuff
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
