@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Yes/No prompt with dmenu, running the argument after 
 #  the prompt if "Yes" is selected
 # Example: ` ./prompt "Shutdown?" "shutdown -h now" `

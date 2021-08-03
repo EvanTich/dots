@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/bin/bash
+# Taken from https://github.com/cadenhenrich/dotfiles
 
 # Sleep for the given time
 sleep $1
@@ -6,4 +7,4 @@ sleep $1
 # Notify the user
 echo "Your timer has ended."
 notify-send "Your timer has ended."
-# mpv --quiet ~/.scripts/bell.mp3 >/dev/null
+mpv --quiet ~/.local/share/bell.mp3 >/dev/null
