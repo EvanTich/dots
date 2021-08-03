@@ -1,27 +1,44 @@
-#!/bin/sh
+#!/bin/bash
 
 # Run this script after getting Arch initially installed. 
 # This script installs my most commonly used programs.
 
-# install all packages
-grep -v "^\s*#" pkglist.txt | pacman -S --needed -
-
-# install yay
-git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -sri
+# install paru
+pacman -S --needed git base-devel curl
+git clone https://aur.archlinux.org/paru.git
+cd paru
+makepkg -si
 cd ..
 
-# install all aur packages
-grep -v "^\s*#" pkglist-aur.txt | yay -S --needed -
-echo "Install nvm from AUR if needed."
+gitinstall() {
+    program="$(basename "$1" .git)"
+    git clone --depth 1 "$1" "$program"
+    cd "$program"
+    make
+    make install
+    cd ..
+}
 
-# install other stuff from other places
-pip install trash-cli
-cargo install tai
-npm install -g tldr
+# install all packages, inspired heavily by larbs
+install() {
+    grep -v "^\s*#" pkglist.csv > /tmp/pkglist.csv
+    local total=$(wc -l < /tmp/pkglist.csv)
+    while IFS=, read -r tag program comment; do
+    	n=$((n+1))
+        echo "Installing \`$program\` ($n of $total) from $tag. $program $comment"
+        case "$tag" in
+    		"A") paru -S --noconfirm "$program" >/dev/null 2>&1 ;;
+    		"G") echo "not supported yet..." ;; # gitinstall "$program" ;;
+    		"P") pip install "$program" >/dev/null 2>&1 ;;
+            "C") cargo install "$program" >/dev/null 2>&1 ;;
+            "N") npm install -g "$program" >/dev/null 2>&1 ;;
+    		*) pacman --noconfirm --needed -S "$program" >/dev/null 2>&1 ;;
+    	esac
+    done < /tmp/pkglist.csv ;
+}
+install
 
-# Move things to where they need to be
+# move things to where they need to be
 cp -r .config   ~/.config
 cp -r .vim      ~/.vim
 cp -r .scripts  ~/.scripts
@@ -32,4 +49,8 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 curl -fLo ~/.vim/colors/jellybeans.vim --create-dirs \
     https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim
+vim +'PlugInstall --sync' +qa
 
+echo "Post install: 
+- Install nvm if needed.
+- TODO"
