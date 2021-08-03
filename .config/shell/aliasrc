@@ -1,0 +1,33 @@
+#!/bin/sh
+
+# startx with custom xinit if EVER needed
+alias startx="startx $XINITRC"
+
+# put sudo in front of some commands
+alias pacman="sudo pacman"
+# TODO...
+
+# verbose and other settings
+alias \
+    cp="cp -iv" \
+    mv="mv -iv" \
+    rm="rm -vI" \
+    bc="bc -ql" \
+    mkdir="mkdir -pv" \
+    yt="youtube-dl --add-metadata -i" \
+    yta="yt -x -f bestaudio/best" \
+    ffmpeg="ffmpeg -hide_banner"
+
+# colors
+alias \
+	ls="ls -hN --color=auto --group-directories-first" \
+	grep="grep --color=auto" \
+	diff="diff --color=auto" \
+	ccat="highlight --out-format=ansi"
+
+# abbreviations
+alias \
+    ll="ls -l" \
+    la="ls -la" \
+    update="sudo pacman -Syu"
+    # vim="nvim"

@@ -1,15 +1,23 @@
 # my config :)
 
-# prompt
+# color, prompt, and options
 autoload -Uz colors && colors
 PROMPT='%B%F{gray}[%F{green}%n %F{gray}%~%F{gray}]%f$%b '
 RPROMPT='%*'
-export EDITOR=vim
+setopt auto_cd              # auto cd into directories
+setopt interactive_comments # allows comments in shell
+setopt inc_append_history   # appends to history (+instantly)
+setopt hist_find_no_dups    # don't list multiple of the same command when using find
+stty stop undef             # disable ctrl-s (terminal freeze)
 
 # history
 HISTFILE=~/.cache/zsh/history
-HISTSIZE=100
-SAVEHIST=100
+HISTSIZE=10000
+SAVEHIST=10000
+
+# load shortcuts and aliases
+source "$XDG_CONFIG_HOME/shell/shortcutrc"
+source "$XDG_CONFIG_HOME/shell/aliasrc"
 
 # vi mode
 bindkey -v
@@ -29,15 +37,7 @@ _comp_options+=(globdots) # include hidden files too
 # bindkey -M menuselect 'j' vi-down-line-or-history
 # bindkey -v '^?' backward-delete-char
 
-# other stuff
-# TODO
-
-# aliases and shortcuts
-# alias vim=nvim
-alias ls="ls --color --group-directories-first"
-alias ll="ls -l"
-alias la="ls -la"
-alias update="sudo pacman -Syu"
+# other stuff?
 
 # highlighting
 eval "$(dircolors)"
