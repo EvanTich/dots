@@ -1,32 +1,39 @@
 # dots
  My dots.
 
-## i3 Arch Setup
+Default wallpaper is by [Alena Aenami](https://www.artstation.com/aenamiart). She is an amazing artist with a noticeable style.
 
-## Before running the install script
+## Before Running the Install Script
+Follow the Arch [installation guide](https://wiki.archlinux.org/title/Installation_guide) and [general recommendations](https://wiki.archlinux.org/title/General_recommendations). 
+Find a nice [display manager](https://wiki.archlinux.org/title/Display_manager) for a nice login screen.
+Check out the commands below too.
 
-Follow the Arch [installation guide](https://wiki.archlinux.org/title/Installation_guide) and [general recommendations](https://wiki.archlinux.org/title/General_recommendations), then 
-Run everything below when originally installing Arch.
+Edit /etc/pacman.conf to make pacman and paru colorful.
 ```sh
-# make pacman and paru colorful
 grep -q "^Color" /etc/pacman.conf || sed -i "s/^#Color$/Color/" /etc/pacman.conf
-
-# use all cores for compilation
-sed -i "s/-j2/-j$(nproc)/;s/^#MAKEFLAGS/MAKEFLAGS/" /etc/makepkg.conf
-
-# make zsh the default shell for the user
-chsh -s /bin/zsh "$name" >/dev/null 2>&1
-sudo -u "$name" mkdir -p "/home/$name/.cache/zsh/"
-
-# allows user to use some commands without entering their password
-echo "%wheel ALL=(ALL) ALL
-%wheel ALL=(ALL) NOPASSWD: /usr/bin/shutdown,/usr/bin/reboot,/usr/bin/systemctl suspend,/usr/bin/wifi-menu,/usr/bin/mount,/usr/bin/umount,/usr/bin/pacman -Syu,/usr/bin/pacman -Syyu,/usr/bin/systemctl restart NetworkManager,/usr/bin/rc-service NetworkManager restart,/usr/bin/pacman -Syyu --noconfirm,/usr/bin/loadkeys,/usr/bin/paru,/usr/bin/pacman -Syyuw --noconfirm" >> /etc/sudoers
 ```
 
-## During the install script
-Go get some coffee and sit outside. Enjoy yourself.
+Edit /etc/makepkg.conf to use all cores for compilation.
+```sh
+sed -i "s/-j2/-j$(nproc)/;s/^#MAKEFLAGS/MAKEFLAGS/" /etc/makepkg.conf
+```
 
-## After running the install script
+Make zsh the default shell for the user.
+```sh
+chsh -s /bin/zsh "$name" >/dev/null 2>&1
+sudo -u "$name" mkdir -p "/home/$name/.cache/zsh/"
+```
+
+Edit /etc/sudoers to allows yourself to use some commands without entering a password. The commands might need to be changed to personal preference.
+```sh
+echo "%wheel ALL=(ALL) ALL
+%wheel ALL=(ALL) NOPASSWD: /usr/bin/shutdown,/usr/bin/reboot,/usr/bin/systemctl suspend,/usr/bin/wifi-menu,/usr/bin/mount,/usr/bin/umount,/usr/bin/pacman -Syu,/usr/bin/pacman -Syyu,/usr/bin/systemctl restart NetworkManager,/usr/bin/rc-service NetworkManager restart,/usr/bin/pacman -Syyu --noconfirm,/usr/bin/loadkeys,/usr/bin/paru" >> /etc/sudoers
+```
+
+## During the Install Script
+Go get some coffee, sit outside, listen to the rain, etc. Enjoy yourself.
+
+## After Running the Install Script
 Install computer-specific packages (like display drivers) and other things that fit your fancy.
 
 ### Things Installed
@@ -113,3 +120,8 @@ Plug | 'neoclide/coc.nvim', {'branch': 'release'}
 Plug | 'scrooloose/NERDTree'
 Plug | 'jiangmiao/auto-pairs'
 Plug | 'vim-airline/vim-airline'
+Plug | 'vim-airline/vim-airline-themes'
+| | |
+
+### Things that Might be of Interest
+- [uim](https://wiki.archlinux.org/title/Input_Japanese_using_uim) for Japanese character input.
