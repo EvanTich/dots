@@ -40,10 +40,9 @@ install() {
 install
 
 # move things to where they need to be
-cp -r .config   ~/.config
-cp -r .vim      ~/.vim
-cp -r .scripts  ~/.scripts
-cp    .zshrc    ~/.zshrc
+cp -ri .config  ~
+cp -ri .local   ~
+cp -ri .vim     ~
 ln -s ~/.config/x11/xprofile ~/.xprofile 
 ln -s ~/.config/shell/profile ~/.zprofile
 
