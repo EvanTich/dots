@@ -1,0 +1,36 @@
+#!/bin/sh
+# Executed before xinitrc, so put things in here to run before the wm
+
+if [ -d /etc/X11/xinit/xinitrc.d ]; then
+    for f in /etc/X11/xinit/xinitrc.d/*; do
+        [ -x "$f" ] && . "$f"
+    done
+    unset f
+fi
+
+# test for an existing bus daemon, just to be safe
+if test -z "$DBUS_SESSION_BUS_ADDRESS" ; then
+  # if not found, launch a new one
+  eval `dbus-launch --sh-syntax --exit-with-session`
+  echo "D-Bus per-session daemon address is: $DBUS_SESSION_BUS_ADDRESS"
+fi
+
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & # auth agent
+. $HOME/.fehbg &        # wallpaper
+xrdb $XDG_CONFIG_HOME/x11/xresources & # use xresources
+mpd &                   # music player daemon
+picom --daemon          # window compositing
+dunst &                 # notifications
+xset r rate 300 50 &    # Speed xrate up (keyboard key repeat)
+redshift &              # ease on the eyes
+
+# bar icons
+pasystray &             # pulseaudio manager
+nm-applet &             # network manager
+cbatticon &             # batery icon
+clipit &                # clipboard manager
+# blueman-applet &        # bluetooth manager
+
+xset s on               # turn screensaver on
+xset s 180 420          # dim after 3 minutes, lock after 7
+xss-lock -n dim-screen -- blurlock
