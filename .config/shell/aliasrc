@@ -29,5 +29,5 @@ alias \
 alias \
     ll="ls -l" \
     la="ls -la" \
-    update="sudo pacman -Syu"
-    # vim="nvim"
+    update="sudo pacman -Syu" \
+    vim="nvim"
