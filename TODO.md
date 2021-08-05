@@ -6,10 +6,13 @@
 - [ ] ~~update~~ remove README package list
 - [ ] SUDO_ASKPASS script
 - [ ] configs
-    - [ ] picom
-    - [ ] i3status
+    - [ ] edit picom config
+    - [ ] edit i3status config
     - [ ] edit i3 config (no autostarts in the config, damnit)
         - [ ] workspace names
+        - [ ] colors
+    - [ ] gtk-3.0, gtk-2.0
 - [ ] change the bell in the timer
 - [ ] remove .vim and only use nvim?
 - [ ] show shortcuts in README
+- [ ] mimeapps.list in .config, .desktop entries in .local/share/applications
