@@ -34,7 +34,7 @@ echo "%wheel ALL=(ALL) ALL
 Go get some coffee, sit outside, listen to the rain, etc. Enjoy yourself.
 
 ## After Running the Install Script
-Install computer-specific packages (like display drivers) and other things that fit your fancy.
+Install computer-specific packages (like display drivers) and other things that fit your fancy (like `zsh-syntax-highlighting`).
 
 ### Things Installed
  | Important Stuff | |
