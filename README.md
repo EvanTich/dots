@@ -1,5 +1,5 @@
 # dots
- My dots.
+ My dots. Generally, I like things dark and compact.
 
 Default wallpaper is by [Alena Aenami](https://www.artstation.com/aenamiart). She is an amazing artist with a noticeable style.
 
@@ -34,9 +34,22 @@ echo "%wheel ALL=(ALL) ALL
 Go get some coffee, sit outside, listen to the rain, etc. Enjoy yourself.
 
 ## After Running the Install Script
-Install computer-specific packages (like display drivers) and other things that fit your fancy (like `zsh-syntax-highlighting`).
+Install computer-specific packages (like display drivers) and other things that fit your fancy (like `zsh-syntax-highlighting`). 
+
+### Other Cool Things
+Another bar like `polybar` or [yabar](https://github.com/geommer/yabar).
+GTK themes like `arc-gtk-theme`, `materia-gtk-theme`, `numix-gtk-theme`, or [more](https://wiki.archlinux.org/title/GTK). 
+[Quiet](https://github.com/QuietTheme/Vim) or [gruvbox](https://github.com/morhetz/gruvbox) themes for vim. 
+Fun scripts/programs like [pipes.sh](https://github.com/pipeseroni/pipes.sh), [cliclock](https://github.com/clyde80/cliclock), or [ndvd](https://github.com/lennypeers/ndvd).
+Fonts like [Fantasque Sans Mono](https://github.com/belluzj/fantasque-sans), [nerd-fonts-iosevka](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Iosevka), or [more](https://wiki.archlinux.org/title/fonts).
+Tools for other things include `github-cli`, 
+
 
 ### Things Installed
+[Packages](./pkglist.csv) are sorted in the following order: important → python, cargo, npm → general software → useful software → programming → themes → fun stuff
+
+TODO: sort things in pkglist instead of listing them here
+
  | Important Stuff | |
 | - | - |
 distro | arch 
@@ -84,7 +97,7 @@ torrents | qbittorent
 gtk theme | materia dark compact
 icons | papirus
 color schemes | pywal
-vim theme | [quiet theme](https://github.com/QuietTheme/Vim)
+vim theme | 
 vim theme | jellybeans
 font | nerd-fonts-iosevka
 | | |
@@ -104,23 +117,12 @@ go | go
 | - | - |
 audio visualizer | cava
 bonsai | [cbonsai](https://gitlab.com/jallbrit/cbonsai)
-dvd bouncy | [ndvd](https://github.com/lennypeers/ndvd)
+dvd bouncy | 
 img to ascii | [tai](https://github.com/MustafaSalih1993/tai)
 cheat engine | [gameconqueror](https://github.com/scanmem/scanmem)
 tldr | [tldr](https://github.com/tldr-pages/tldr)
 better ls | [exa](https://github.com/ogham/exa)
 steam locomotive | [sl](https://github.com/mtoyoda/sl)
-| | |
-
-| Vim | |
-| - | - |
-plugin manager | vim-plug 
-Plug | 'sheerun/vim-polyglot'
-Plug | 'neoclide/coc.nvim', {'branch': 'release'}
-Plug | 'scrooloose/NERDTree'
-Plug | 'jiangmiao/auto-pairs'
-Plug | 'vim-airline/vim-airline'
-Plug | 'vim-airline/vim-airline-themes'
 | | |
 
 ### Things that Might be of Interest
