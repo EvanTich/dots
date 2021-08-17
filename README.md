@@ -38,15 +38,16 @@ Install computer-specific packages (like display drivers) and other things that 
 
 ### Other Cool Things
 Another bar like `polybar` or [yabar](https://github.com/geommer/yabar).
-GTK themes like `arc-gtk-theme`, `materia-gtk-theme`, `numix-gtk-theme`, or [more](https://wiki.archlinux.org/title/GTK). 
-[Quiet](https://github.com/QuietTheme/Vim) or [gruvbox](https://github.com/morhetz/gruvbox) themes for vim. 
+GTK themes like `arc-gtk-theme`, `materia-gtk-theme`, `numix-gtk-theme`, [flat-remix-gtk](https://github.com/daniruiz/Flat-Remix-GTK) or [more](https://wiki.archlinux.org/title/GTK). 
+[Quiet](https://github.com/QuietTheme/Vim), [gruvbox](https://github.com/morhetz/gruvbox), or [iceberg](https://github.com/cocopon/iceberg.vim) themes for vim. 
 Fun scripts/programs like [pipes.sh](https://github.com/pipeseroni/pipes.sh), [cliclock](https://github.com/clyde80/cliclock), or [ndvd](https://github.com/lennypeers/ndvd).
 Fonts like [Fantasque Sans Mono](https://github.com/belluzj/fantasque-sans), [nerd-fonts-iosevka](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Iosevka), or [more](https://wiki.archlinux.org/title/fonts).
 Tools for other things include `github-cli`, 
+[Quiet theme](https://github.com/QuietTheme) looks pretty nice and has options for multiple different applications.
 
 
 ### Things Installed
-[Packages](./pkglist.csv) are sorted in the following order: important → python, cargo, npm → general software → useful software → programming → themes → fun stuff
+[Packages](./pkglist.csv) are sorted in the following order: important → tools (including python, cargo, npm) → useful software → everyday software → themes → fun stuff
 
 TODO: sort things in pkglist instead of listing them here
 
@@ -127,3 +128,5 @@ steam locomotive | [sl](https://github.com/mtoyoda/sl)
 
 ### Things that Might be of Interest
 - [uim](https://wiki.archlinux.org/title/Input_Japanese_using_uim) for Japanese character input.
+- [awesome-console-services](https://github.com/chubin/awesome-console-services) for a neat curated list of website services (usable with `curl`).
+- [suckless](https://suckless.org/) and the many listed projects that are inspired by suckless.
