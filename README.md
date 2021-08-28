@@ -47,7 +47,7 @@ Tools for other things include `github-cli`,
 
 
 ### Things Installed
-[Packages](./pkglist.csv) are sorted in the following order: important → tools (including python, cargo, npm) → useful software → everyday software → themes → fun stuff
+[Packages](./pkglist.csv) are sorted in the following order: important → tools (including python, cargo, npm) → everyday software → themes → fun stuff
 
 TODO: sort things in pkglist instead of listing them here
 
