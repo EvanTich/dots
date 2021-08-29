@@ -15,7 +15,8 @@
         - [ ] rules
     - [ ] gtk-3.0, gtk-2.0
 - [ ] change the bell in the timer
-- [ ] remove .vim and only use nvim?
+- [x] remove .vim and only use nvim?
 - [ ] show shortcuts in README
-- [ ] mimeapps.list in .config, .desktop entries in .local/share/applications
+- [x] mimeapps.list in .config, .desktop entries in .local/share/applications
+- [ ] more apps in mimeapps.list
 - [ ] see if I like workspace numbers or not
