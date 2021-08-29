@@ -10,7 +10,7 @@
     - [ ] edit i3status config
         - [ ] emojis
     - [ ] edit i3 config (no autostarts in the config, damnit)
-        - [ ] workspace names
+        - [x] workspace names
         - [ ] colors
         - [ ] rules
     - [x] gtk-3.0, gtk-2.0

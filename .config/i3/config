@@ -207,10 +207,10 @@ set $ws1 "1:📌"
 set $ws2 "2:📂"
 set $ws3 "3:✨"
 set $ws4 "4:🗨️"
-set $ws5 5
-set $ws6 6
-set $ws7 7
-set $ws8 8
+set $ws5 "5:🎮"
+set $ws6 "6:📂"
+set $ws7 "7:📂"
+set $ws8 "8:📌"
 
 # Switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -257,6 +257,15 @@ bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
+
+assign [title="ncmpcpp"] $ws1
+assign [title="lf"] $ws1
+assign [class="Spotify"] $ws1
+assign [class="firefox"] $ws2
+assign [class="code-oss"] $ws3
+assign [class="discord"] $ws4
+assign [class="slack"] $ws4
+assign [class="steam"] $ws5
 
 for_window [instance="dropdown"] floating enable
 # for_window [instance="dropdown"] resize set 1200 600
