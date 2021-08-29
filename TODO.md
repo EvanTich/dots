@@ -3,7 +3,7 @@
 - [x] .xprofile (.config/x11/xprofile) and .zprofile (.config/shell/profile) symlinks
 - [ ] run the script on an actual setup, figure out what to fix
     - [ ] how to fix pacman from being dumb?
-- [ ] ~~update~~ remove README package list
+- [x] ~~update~~ remove README package list
 - [ ] SUDO_ASKPASS script
 - [ ] configs
     - [ ] edit picom config
@@ -13,10 +13,11 @@
         - [ ] workspace names
         - [ ] colors
         - [ ] rules
-    - [ ] gtk-3.0, gtk-2.0
+    - [x] gtk-3.0, gtk-2.0
 - [ ] change the bell in the timer
 - [x] remove .vim and only use nvim?
 - [ ] show shortcuts in README
 - [x] mimeapps.list in .config, .desktop entries in .local/share/applications
 - [ ] more apps in mimeapps.list
 - [ ] see if I like workspace numbers or not
+- [ ] checkout rofi (speed, uses, etc.)
