@@ -42,16 +42,15 @@ install
 # move things to where they need to be
 cp -ri .config  ~
 cp -ri .local   ~
-cp -ri .vim     ~
 ln -s ~/.config/x11/xprofile ~/.xprofile 
 ln -s ~/.config/shell/profile ~/.zprofile
 
 # vim stuff
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-curl -fLo ~/.vim/colors/jellybeans.vim --create-dirs \
+curl -fLo ~/.config/nvim/colors/jellybeans.vim --create-dirs \
     https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim
-vim +'PlugInstall --sync' +qa
+nvim +'PlugInstall --sync' +qa
 
 # set default wallpaper
 feh --bg-fill .local/share/default-wallpaper.jpg
