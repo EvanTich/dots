@@ -4,7 +4,7 @@
 - [ ] run the script on an actual setup, figure out what to fix
     - [ ] how to fix pacman from being dumb?
 - [x] ~~update~~ remove README package list
-- [ ] SUDO_ASKPASS script
+- [x] SUDO_ASKPASS script
 - [ ] configs
     - [ ] edit picom config
     - [ ] edit i3status config
