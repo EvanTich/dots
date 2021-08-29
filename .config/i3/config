@@ -21,7 +21,7 @@ default_floating_border pixel 1
 hide_edge_borders none
 
 # Font for window titles. Will also be used by the bar unless specified otherwise.
-font xft:URWGothic-Book 11
+font pango:Iosevka 10
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
@@ -257,6 +257,13 @@ bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
+
+for_window [instance="dropdown"] floating enable
+# for_window [instance="dropdown"] resize set 1200 600
+# for_window [instance="dropdown"] move position center
+# for_window [instance="dropdown"] move scratchpad
+# for_window [instance="dropdown"] sticky enable
+
 # TODO
 
 ###########################
