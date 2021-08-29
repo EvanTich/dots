@@ -24,7 +24,7 @@ export HISTFILE="$XDG_DATA_HOME/history"
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0"
 
 # other program settings
-# export SUDO_ASKPASS="$HOME/.local/bin/askpass"
+export SUDO_ASKPASS="$HOME/.local/bin/askpass"
 export LESS=-R # holy less customization!
 export LESS_TERMCAP_mb="$(printf '%b' '[1;31m')" # ESC[...m
 export LESS_TERMCAP_md="$(printf '%b' '[1;36m')"

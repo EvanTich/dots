@@ -3,6 +3,6 @@
 # SUDO_ASKPASS script, will be used as a password prompt.
 
 # this simply doesn't hide password input and I am sad
-# dmenu -fn Monospace-18 -p "$1" <&- && echo
+dmenu -fn Monospace-18 -p "$1" <&- && echo
 
 exit 0
