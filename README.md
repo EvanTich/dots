@@ -33,6 +33,9 @@ echo "%wheel ALL=(ALL) ALL
 ## During the Install Script
 Go get some coffee, sit outside, listen to the rain, etc. Enjoy yourself.
 
+### Things Installed
+[Packages](./pkglist.csv) are sorted in the following order: important → tools (including python, cargo, npm) → everyday software → themes → fun stuff
+
 ## After Running the Install Script
 Install computer-specific packages (like display drivers) and other things that fit your fancy (like `zsh-syntax-highlighting`). 
 
@@ -44,9 +47,6 @@ Fun scripts/programs like [pipes.sh](https://github.com/pipeseroni/pipes.sh), [c
 Fonts like [Fantasque Sans Mono](https://github.com/belluzj/fantasque-sans), [nerd-fonts-iosevka](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Iosevka), or [more](https://wiki.archlinux.org/title/fonts).
 Tools for other things include `github-cli`, 
 [Quiet theme](https://github.com/QuietTheme) looks pretty nice and has options for multiple different applications.
-
-### Things Installed
-[Packages](./pkglist.csv) are sorted in the following order: important → tools (including python, cargo, npm) → everyday software → themes → fun stuff
 
 ### Things that Might be of Interest
 - [uim](https://wiki.archlinux.org/title/Input_Japanese_using_uim) for Japanese character input.
