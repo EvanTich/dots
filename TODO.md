@@ -21,3 +21,5 @@
 - [ ] more apps in mimeapps.list
 - [ ] see if I like workspace numbers or not
 - [ ] checkout rofi (speed, uses, etc.)
+- [ ] latex support + editor
+- [ ] keyring?
