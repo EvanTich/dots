@@ -14,7 +14,7 @@ general {
     color_degraded = "#C60000"
 }
 
-order += "window"
+# order += "window"
 order += "cpu_usage"
 order += "memory"
 order += "disk /"
@@ -22,9 +22,9 @@ order += "ethernet _first_"
 # order += "battery all"
 order += "tztime local"
 
-window {
-    format = " \[{title}\] "
-}
+#window {
+#    format = " \[{title}\] "
+#}
 
 cpu_usage {
     format = " cpu  %usage "
