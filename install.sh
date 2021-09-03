@@ -3,12 +3,16 @@
 # Run this script after getting Arch initially installed. 
 # This script installs my most commonly used programs.
 
-# install paru
+# install various useful dev packages
 sudo pacman -S --needed git base-devel curl
-git clone https://aur.archlinux.org/paru.git
-cd paru
-makepkg -si
-cd ..
+
+# install paru if needed
+if ! pacman -Qs paru >/dev/null ; then
+    git clone https://aur.archlinux.org/paru.git
+    cd paru
+    makepkg -si
+    cd ..
+fi
 
 gitinstall() {
     program="$(basename "$1" .git)"
@@ -68,8 +72,6 @@ curl -fLo ~/.config/nvim/colors/jellybeans.vim --create-dirs \
 nvim +'PlugInstall --sync' +qa
 
 # set default wallpaper
-feh --bg-fill .local/share/default-wallpaper.jpg
+feh --bg-fill ~/.local/share/default-wallpaper.jpg
 
-echo "Post install: 
-- Install nvm if needed.
-- Install uim if wanted."
+echo "Post install: See README.md"
