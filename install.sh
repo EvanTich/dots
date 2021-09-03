@@ -4,7 +4,7 @@
 # This script installs my most commonly used programs.
 
 # install paru
-pacman -S --needed git base-devel curl
+sudo pacman -S --needed git base-devel curl
 git clone https://aur.archlinux.org/paru.git
 cd paru
 makepkg -si
@@ -28,12 +28,12 @@ install() {
         comment=`sed -e 's/^\s*"//' -e 's/"$//' <<< "$comment"`
         echo "Installing \`$program\` ($n of $total) from $tag. $program $comment"
         case "$tag" in
-            "A") paru -S --noconfirm "$program" >/dev/null 2>&1 ;;
+            "A") sudo paru -S --noconfirm "$program" >/dev/null 2>&1 ;;
             "G") echo "not supported yet..." ;; # gitinstall "$program" ;;
             "P") pip install "$program" >/dev/null 2>&1 ;;
             "C") cargo install "$program" >/dev/null 2>&1 ;;
             "N") npm install -g "$program" >/dev/null 2>&1 ;;
-            *) pacman --noconfirm --needed -S "$program" >/dev/null 2>&1 ;;
+            *) sudo pacman --noconfirm --needed -S "$program" >/dev/null 2>&1 ;;
         esac
     done < /tmp/pkglist.csv ;
 }
