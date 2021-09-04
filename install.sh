@@ -59,12 +59,16 @@ install() {
 install
 
 # move things to where they need to be
+echo "Packages from the list have been installed. Moving configuration files..."
+
 cp -ri .config  ~
 cp -ri .local   ~
 ln -s ~/.config/x11/xprofile ~/.xprofile 
 ln -s ~/.config/shell/profile ~/.zprofile
 
 # vim stuff
+echo "Installing vim stuff..."
+
 curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 curl -fLo ~/.config/nvim/colors/jellybeans.vim --create-dirs \
@@ -72,6 +76,7 @@ curl -fLo ~/.config/nvim/colors/jellybeans.vim --create-dirs \
 nvim +'PlugInstall --sync' +qa
 
 # set default wallpaper
+echo "Setting default wallpaper..."
 feh --bg-fill ~/.local/share/default-wallpaper.jpg
 
 echo "Post install: See README.md"

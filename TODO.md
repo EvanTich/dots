@@ -1,8 +1,8 @@
 # TODO
 
 - [x] .xprofile (.config/x11/xprofile) and .zprofile (.config/shell/profile) symlinks
-- [ ] run the script on an actual setup, figure out what to fix
-    - [ ] how to fix pacman from being dumb?
+- [x] run the script on an actual setup, figure out what to fix
+    - [x] how to fix pacman from being dumb?
 - [x] ~~update~~ remove README package list
 - [x] SUDO_ASKPASS script
 - [ ] configs
