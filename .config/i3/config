@@ -255,23 +255,30 @@ bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_
 #####     RULES     #####
 #########################
 
-# switch to workspace with urgent window automatically
-for_window [urgent=latest] focus
-
-assign [title="ncmpcpp"] $ws1
+# Open programs on certain workspaces
 assign [title="lf"] $ws1
-assign [class="Spotify"] $ws1
+assign [class="gotop"] $ws1
+assign [title="ncmpcpp"] $ws1
 assign [class="firefox"] $ws2
 assign [class="code-oss"] $ws3
 assign [class="discord"] $ws4
 assign [class="slack"] $ws4
-assign [class="steam"] $ws5
+assign [class="Spotify"] $ws4
+assign [class="Steam"] $ws5
+assign [class="Lutris"] $ws5
+
+# switch to workspace with urgent window automatically
+for_window [urgent=latest] focus
 
 for_window [instance="dropdown"] floating enable
 # for_window [instance="dropdown"] resize set 1200 600
 # for_window [instance="dropdown"] move position center
 # for_window [instance="dropdown"] move scratchpad
 # for_window [instance="dropdown"] sticky enable
+
+for_window [class="Steam"] floating enable border normal
+for_window [class="Lutris"] floating enable
+for_window [class="Wine"] floating enable
 
 # TODO
 
@@ -329,7 +336,7 @@ bar {
 
     bindsym button4 nop
     bindsym button5 nop
-    strip_workspace_numbers yes
+    strip_workspace_numbers no
 
     colors {
         background #222D31
@@ -403,3 +410,15 @@ mode "$mode_gaps_outer" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+
+###########################
+#####     STARTUP     #####
+###########################
+
+# Execute on startup
+exec --no-startup-id kitty --class gotop --hold gotop -m
+exec --no-startup-id kitty --class lf --hold lf
+exec --no-startup-id kitty --class ncmpcpp --hold ncmpcpp
+
+# Swap to workspace
+# exec --no-startup-id i3-msg workspace $ws2
