@@ -26,7 +26,6 @@ redshift &              # ease on the eyes
 # bar icons
 pasystray &             # pulseaudio manager
 nm-applet &             # network manager
-# cbatticon &             # batery icon (not useful for desktop)
 clipit &                # clipboard manager
 # blueman-applet &        # bluetooth manager
 
