@@ -17,7 +17,7 @@ fi
 
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & # auth agent
 . $HOME/.fehbg &        # wallpaper
-xrdb $XDG_CONFIG_HOME/x11/xresources & # use xresources
+xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources & # use xresources
 mpd &                   # music player daemon
 picom --daemon          # window compositing
 dunst &                 # notifications

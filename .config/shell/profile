@@ -1,4 +1,5 @@
 #!/bin/zsh
+# Runs on login. (some display managers, like lightdm, do not source this file)
 
 # Environment variables!
 
@@ -19,9 +20,11 @@ export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export WINEPREFIX="$XDG_DATA_HOME/wineprefixes/default"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+export NVM_DIR="$XDG_DATA_HOME/nvm"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export GOPATH="$XDG_DATA_HOME/go"
 export HISTFILE="$XDG_DATA_HOME/history"
+export LESSHISTFILE="-"
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0"
 
 # other program settings
