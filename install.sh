@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Run this script after getting Arch initially installed. 
+# Run this script on your users' first login (or anytime afterwards). 
 # This script installs my most commonly used programs.
 
 # install various useful dev packages
@@ -77,6 +77,6 @@ nvim +'PlugInstall --sync' +qa
 
 # set default wallpaper
 echo "Setting default wallpaper..."
-feh --bg-fill ~/.local/share/default-wallpaper.jpg
+feh --bg-max ~/.local/share/default-wallpaper.jpg
 
 echo "Post install: See README.md"
