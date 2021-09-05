@@ -40,7 +40,8 @@ install() {
             paru -S --noconfirm "$program" >/dev/null 2>&1 ;;
         "G") 
             # installmsg $program $comment "git" $n $total
-            echo "not supported yet..." ;; # gitinstall "$program" ;;
+            # gitinstall "$program"
+            echo "git not supported yet... Skipping $program." ;; 
         "P") 
             installmsg $program $comment "pip" $n $total
             pip install "$program" >/dev/null 2>&1 ;;
