@@ -5,17 +5,18 @@ Default wallpaper is by [Alena Aenami](https://www.artstation.com/aenamiart). Sh
 
 ## Before Running the Install Script
 Follow the Arch [installation guide](https://wiki.archlinux.org/title/Installation_guide) and [general recommendations](https://wiki.archlinux.org/title/General_recommendations). 
-Check out the commands below too.
+Check out the commands below too (run as root).
 
 ```sh
 # Install and enable NetworkManager.
 pacman -S networkmanager
-systemctl enable NetworkManager
+systemctl enable NetworkManager.service
 
 # Install GRUB (change --efi-directory to where you mounted your efi partition)
-pacman -S grub efivar os-prober
-grub-install --target=x86_64-efi --efi-directory=/mnt/efi/ --bootloader-id=GRUB
-# uncomment GRUB_DISABLE_OS_PROBER from /etc/default/grub
+# If you want to dual-boot alongside Windows, install os-prober and ntfs-3g
+pacman -S grub efivar os-prober ntfs-3g
+grub-install --target=x86_64-efi --efi-directory=/boot/efi/ --bootloader-id=GRUB
+# uncomment GRUB_DISABLE_OS_PROBER from /etc/default/grub if dual-booting
 vim /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 
@@ -36,7 +37,7 @@ echo "%wheel ALL=(ALL) ALL
 ```
 
 ## During the Install Script
-Go get some coffee, sit outside, listen to the rain, etc. Enjoy yourself. After the packages are installed, there may be prompts for replacing files in .config and .local. Follow the prompts, and it should be the final thing you need to do.
+Go get some coffee, sit outside, listen to the rain, etc. Enjoy yourself. After the packages are installed, there may be prompts for replacing files in `.config` and `.local`. Follow the prompts, it should be the final thing you need to do.
 
 ### Things Installed
 [Packages](./pkglist.csv) are sorted in the following order: important → tools (including python, cargo, npm) → everyday software → themes → fun stuff

@@ -19,7 +19,7 @@
 - [ ] show shortcuts in README
 - [x] mimeapps.list in .config, .desktop entries in .local/share/applications
 - [ ] more apps in mimeapps.list
-- [ ] see if I like workspace numbers or not
+- [x] see if I like workspace numbers or not
 - [ ] checkout rofi (speed, uses, etc.)
 - [ ] latex support + editor
 - [ ] keyring?
