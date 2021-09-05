@@ -5,33 +5,38 @@ Default wallpaper is by [Alena Aenami](https://www.artstation.com/aenamiart). Sh
 
 ## Before Running the Install Script
 Follow the Arch [installation guide](https://wiki.archlinux.org/title/Installation_guide) and [general recommendations](https://wiki.archlinux.org/title/General_recommendations). 
-Find a nice [display manager](https://wiki.archlinux.org/title/Display_manager) for a nice login screen.
 Check out the commands below too.
 
-Edit /etc/pacman.conf to make pacman and paru colorful.
 ```sh
+# Install and enable NetworkManager.
+pacman -S networkmanager
+systemctl enable NetworkManager
+
+# Install GRUB (change --efi-directory to where you mounted your efi partition)
+pacman -S grub efivar os-prober
+grub-install --target=x86_64-efi --efi-directory=/mnt/efi/ --bootloader-id=GRUB
+# uncomment GRUB_DISABLE_OS_PROBER from /etc/default/grub
+vim /etc/default/grub
+grub-mkconfig -o /boot/grub/grub.cfg
+
+# Create a user (replace 'username' with what you want) and set their password.
+useradd -m -g users -G wheel -s /bin/zsh username
+passwd username
+
+# Edit /etc/pacman.conf to make pacman and paru colorful.
 grep -q "^Color" /etc/pacman.conf || sed -i "s/^#Color$/Color/" /etc/pacman.conf
-```
 
-Edit /etc/makepkg.conf to use all cores for compilation.
-```sh
+# Edit /etc/makepkg.conf to use all cores for compilation.
 sed -i "s/-j2/-j$(nproc)/;s/^#MAKEFLAGS/MAKEFLAGS/" /etc/makepkg.conf
-```
 
-Make zsh the default shell for the user.
-```sh
-chsh -s /bin/zsh "$name" >/dev/null 2>&1
-sudo -u "$name" mkdir -p "/home/$name/.cache/zsh/"
-```
-
-Edit /etc/sudoers to allows yourself to use some commands without entering a password. The commands might need to be changed to personal preference.
-```sh
+# Edit /etc/sudoers to allows yourself to use some commands without entering a password. 
+# The commands might need to be changed to personal preference.
 echo "%wheel ALL=(ALL) ALL
-%wheel ALL=(ALL) NOPASSWD: /usr/bin/shutdown,/usr/bin/reboot,/usr/bin/systemctl suspend,/usr/bin/wifi-menu,/usr/bin/mount,/usr/bin/umount,/usr/bin/pacman -Syu,/usr/bin/pacman -Syyu,/usr/bin/systemctl restart NetworkManager,/usr/bin/rc-service NetworkManager restart,/usr/bin/pacman -Syyu --noconfirm,/usr/bin/loadkeys,/usr/bin/paru" >> /etc/sudoers
+%wheel ALL=(ALL) NOPASSWD: /usr/bin/shutdown,/usr/bin/reboot,/usr/bin/systemctl suspend,/usr/bin/wifi-menu,/usr/bin/mount,/usr/bin/umount,/usr/bin/pacman -Syu,/usr/bin/pacman -Syyu,/usr/bin/systemctl restart NetworkManager,/usr/bin/pacman -Syyu --noconfirm,/usr/bin/loadkeys,/usr/bin/paru" >> /etc/sudoers
 ```
 
 ## During the Install Script
-Go get some coffee, sit outside, listen to the rain, etc. Enjoy yourself.
+Go get some coffee, sit outside, listen to the rain, etc. Enjoy yourself. After the packages are installed, there may be prompts for replacing files in .config and .local. Follow the prompts, and it should be the final thing you need to do.
 
 ### Things Installed
 [Packages](./pkglist.csv) are sorted in the following order: important → tools (including python, cargo, npm) → everyday software → themes → fun stuff
@@ -40,13 +45,14 @@ Go get some coffee, sit outside, listen to the rain, etc. Enjoy yourself.
 Install computer-specific packages (like display drivers) and other things that fit your fancy (like `zsh-syntax-highlighting`). 
 
 ### Other Cool Things
-Another bar like `polybar` or [yabar](https://github.com/geommer/yabar).
-GTK themes like `arc-gtk-theme`, `materia-gtk-theme`, `numix-gtk-theme`, [flat-remix-gtk](https://github.com/daniruiz/Flat-Remix-GTK) or [more](https://wiki.archlinux.org/title/GTK). 
-[Quiet](https://github.com/QuietTheme/Vim), [gruvbox](https://github.com/morhetz/gruvbox), or [iceberg](https://github.com/cocopon/iceberg.vim) themes for vim. 
+Another bar like `polybar`, or [yabar](https://github.com/geommer/yabar).
+GTK themes like `arc-gtk-theme`, `numix-gtk-theme`, [flat-remix-gtk](https://github.com/daniruiz/Flat-Remix-GTK), or [more](https://wiki.archlinux.org/title/GTK). 
+[gruvbox](https://github.com/morhetz/gruvbox), or [iceberg](https://github.com/cocopon/iceberg.vim) themes for vim. 
 Fun scripts/programs like [pipes.sh](https://github.com/pipeseroni/pipes.sh), [cliclock](https://github.com/clyde80/cliclock), or [ndvd](https://github.com/lennypeers/ndvd).
 Fonts like [Fantasque Sans Mono](https://github.com/belluzj/fantasque-sans), [nerd-fonts-iosevka](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Iosevka), or [more](https://wiki.archlinux.org/title/fonts).
 Tools for other things include `github-cli`, 
-[Quiet theme](https://github.com/QuietTheme) looks pretty nice and has options for multiple different applications.
+[Quiet theme](https://github.com/QuietTheme) looks pretty nice and has options for multiple different applications (vim, gtk, etc.).
+A display manager for a nice loggin screen like [ly](https://github.com/nullgemm/ly), [lightdm](https://github.com/CanonicalLtd/lightdm/), or [more](https://wiki.archlinux.org/title/Display_manager)
 
 ### Things that Might be of Interest
 - [uim](https://wiki.archlinux.org/title/Input_Japanese_using_uim) for Japanese character input.
