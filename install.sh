@@ -36,23 +36,23 @@ install() {
         comment=`sed -e 's/^\s*"//' -e 's/"$//' <<< "$comment"`
         case "$tag" in
         "A") 
-            installmsg $program $comment "the AUR" $n $total
+            installmsg "$program" "$comment" "the AUR" "$n" "$total"
             paru -S --noconfirm "$program" >/dev/null 2>&1 ;;
         "G") 
             # installmsg $program $comment "git" $n $total
             # gitinstall "$program"
             echo "git not supported yet... Skipping $program." ;; 
         "P") 
-            installmsg $program $comment "pip" $n $total
+            installmsg "$program" "$comment" "pip" "$n" "$total"
             pip install "$program" >/dev/null 2>&1 ;;
         "C") 
-            installmsg $program $comment "Cargo" $n $total
+            installmsg "$program" "$comment" "Cargo" "$n" "$total"
             cargo install "$program" >/dev/null 2>&1 ;;
         "N") 
-            installmsg $program $comment "npm" $n $total
+            installmsg "$program" "$comment" "npm" "$n" "$total"
             npm install -g "$program" >/dev/null 2>&1 ;;
         *) 
-            installmsg $program $comment "the AUR" $n $total
+            installmsg "$program" "$comment" "the AUR" "$n" "$total"
             sudo pacman --noconfirm --needed -S "$program" >/dev/null 2>&1 ;;
         esac
     done < /tmp/pkglist.csv ;
