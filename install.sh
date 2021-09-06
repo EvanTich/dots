@@ -3,16 +3,19 @@
 # Run this script on your users' first login (or anytime afterwards). 
 # This script installs my most commonly used programs.
 
-# install various useful dev packages
-sudo pacman -S --needed git base-devel curl
+install_aur() {
+    # install various useful dev packages
+    sudo pacman -S --needed git base-devel curl
 
-# install paru if needed
-if ! pacman -Qs paru >/dev/null ; then
-    git clone https://aur.archlinux.org/paru.git
-    cd paru
-    makepkg -si
-    cd ..
-fi
+    # install paru if needed
+    if ! pacman -Qs paru >/dev/null ; then
+        git clone https://aur.archlinux.org/paru.git
+        cd paru
+        makepkg -si
+        cd ..
+    fi
+}
+install_aur
 
 gitinstall() {
     program="$(basename "$1" .git)"
@@ -60,12 +63,15 @@ install() {
 install
 
 # move things to where they need to be
-echo "Packages from the list have been installed. Moving configuration files..."
+move_dirs() {
+    echo "Packages from the list have been installed. Moving configuration files..."
 
-cp -ri .config  ~
-cp -ri .local   ~
-ln -s ~/.config/x11/xprofile ~/.xprofile 
-ln -s ~/.config/shell/profile ~/.zprofile
+    cp -ri .config  ~
+    cp -ri .local   ~
+    ln -s ~/.config/x11/xprofile ~/.xprofile 
+    ln -s ~/.config/shell/profile ~/.zprofile
+}
+move_dirs
 
 # vim stuff
 echo "Installing vim stuff..."
