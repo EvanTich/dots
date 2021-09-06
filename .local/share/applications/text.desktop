@@ -1,4 +1,4 @@
 [Desktop Entry]
 Type=Application
 Name=Text Editor
-Exec=/usr/local/bin/kitty nvim %u
+Exec=/usr/bin/kitty nvim %u
