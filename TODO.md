@@ -25,3 +25,4 @@
 - [ ] checkout rofi (speed, uses, etc.)
 - [ ] latex support + editor
 - [ ] keyring?
+- [ ] xbacklight
