@@ -15,9 +15,10 @@ general {
 }
 
 # order += "window"
+# order += "cpu_temperature 0"
 order += "cpu_usage"
 order += "memory"
-order += "disk /"
+# order += "disk /"
 # order += "ethernet _first_"
 # order += "battery all"
 order += "volume master"
@@ -26,6 +27,12 @@ order += "tztime local"
 #window {
 #    format = " \[{title}\] "
 #}
+
+cpu_temperature 0 {
+    format = " %degrees °C "
+    max_threshold = 70
+    path = "TODO"
+}
 
 cpu_usage {
     format = " cpu  %usage "
