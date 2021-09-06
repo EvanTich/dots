@@ -18,8 +18,9 @@ general {
 order += "cpu_usage"
 order += "memory"
 order += "disk /"
-order += "ethernet _first_"
+# order += "ethernet _first_"
 # order += "battery all"
+order += "volume master"
 order += "tztime local"
 
 #window {
@@ -31,8 +32,9 @@ cpu_usage {
 }
 
 memory {
-    format = " mem %used / %total (%percentage_used) "
-    threshold_degraded = "1G"
+    # format = " mem %used / %total (%percentage_used) "
+    format = " mem %percentage_used "
+    threshold_degraded = "10%"
     format_degraded = " mem low %free "
 }
 
@@ -63,6 +65,12 @@ battery all {
     status_full = "☻"
     low_threshold = 15
     threshold_type = time
+}
+
+volume master {
+    format = "♪: %volume"
+    format_muted = "♪: ~%volume~"
+    device = "pulse:1"
 }
 
 tztime local {

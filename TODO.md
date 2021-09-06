@@ -9,6 +9,8 @@
     - [ ] edit picom config
     - [ ] edit i3status config
         - [ ] emojis
+        - [ ] cpu temp
+        - [ ] i3blocks?
     - [ ] edit i3 config (no autostarts in the config, damnit)
         - [x] workspace names
         - [ ] colors
