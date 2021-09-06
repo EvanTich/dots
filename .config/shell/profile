@@ -26,6 +26,7 @@ export GOPATH="$XDG_DATA_HOME/go"
 export HISTFILE="$XDG_DATA_HOME/history"
 export LESSHISTFILE="-"
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0"
+export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 
 # other program settings
 export SUDO_ASKPASS="$HOME/.local/bin/askpass"
