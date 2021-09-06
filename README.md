@@ -43,7 +43,7 @@ Go get some coffee, sit outside, listen to the rain, etc. Enjoy yourself. After 
 [Packages](./pkglist.csv) are sorted in the following order: important → tools (including python, cargo, npm) → everyday software → themes → fun stuff
 
 ## After Running the Install Script
-Install computer-specific packages (like display drivers) and other things that fit your fancy (like `zsh-syntax-highlighting`). 
+Install computer-specific packages (like display drivers) and other things that fit your fancy (like `zsh-syntax-highlighting`). Start/enable services like `bluetooth.service`.
 
 ### Other Cool Things
 Another bar like `polybar`, or [yabar](https://github.com/geommer/yabar).
