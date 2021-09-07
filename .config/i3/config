@@ -72,11 +72,12 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 
 # applications
+bindsym $mod+F1 exec nemo
+# bindsym $mod+Shift+F1 exec gksu nemo
 bindsym $mod+F2 exec firefox
-bindsym $mod+F3 exec nemo
-# bindsym $mod+F3 exec kitty lf
-# bindsym $mod+Shift+F3 exec gksu nemo
-bindsym $mod+F5 exec kitty ncmpcpp
+# bindsym $mod+F3 exec 
+# bindsym $mod+F4 exec 
+# bindsym $mod+F5 exec 
 
 # screenshotting
 bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/screenshot-$(date +'%F %T').png"
@@ -113,12 +114,6 @@ bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
-
-# move focused workspace (left/right)
-bindsym $mod+Ctrl+Shift+j move workspace to output left
-bindsym $mod+Ctrl+Shift+semicolon move workspace to output right
-bindsym $mod+Ctrl+Shift+Left move workspace to output left
-bindsym $mod+Ctrl+Shift+Right move workspace to output right
 
 # split orientation
 bindsym $mod+h split h
@@ -257,6 +252,12 @@ workspace_auto_back_and_forth yes
 bindsym $mod+b workspace back_and_forth
 bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
+# move focused workspace (left/right)
+bindsym $mod+Ctrl+Shift+j move workspace to output left
+bindsym $mod+Ctrl+Shift+semicolon move workspace to output right
+bindsym $mod+Ctrl+Shift+Left move workspace to output left
+bindsym $mod+Ctrl+Shift+Right move workspace to output right
+
 #########################
 #####     RULES     #####
 #########################
@@ -335,10 +336,8 @@ bar {
     i3bar_command i3bar
     status_command i3status
     position top
-
-## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-#    tray_output primary
-#    tray_output eDP1
+    
+    tray_output primary
 
     bindsym button4 nop
     bindsym button5 nop
@@ -363,8 +362,8 @@ bar {
 ##########################
 
 # Set inner/outer gaps
-gaps inner 14
-gaps outer -2
+gaps inner 8
+gaps outer 5
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>
@@ -422,9 +421,12 @@ mode "$mode_gaps_outer" {
 ###########################
 
 # Execute on startup
-exec --no-startup-id kitty --class gotop --hold gotop -m
+exec --no-startup-id kitty --class gotop --hold gotop
 exec --no-startup-id kitty --class lf --hold lf
 exec --no-startup-id kitty --class ncmpcpp --hold ncmpcpp
+exec --no-startup-id kitty --class cava --hold cava
+exec --no-startup-id kitty --class cbonsai --hold cbonsai
+
 
 # Swap to workspace
 # exec --no-startup-id i3-msg workspace $ws2
