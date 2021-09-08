@@ -16,6 +16,8 @@
         - [ ] colors
         - [ ] rules
     - [x] gtk-3.0, gtk-2.0
+    - [ ] actual fonts.conf
+    - [ ] mpd conf
 - [ ] change the bell in the timer
 - [x] remove .vim and only use nvim?
 - [ ] show shortcuts in README
