@@ -21,7 +21,7 @@ default_floating_border pixel 1
 hide_edge_borders none
 
 # Font for window titles. Will also be used by the bar unless specified otherwise.
-font pango:Iosevka 10
+font pango:FantasqueSansMono Nerd Font Mono 14px
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
@@ -75,7 +75,7 @@ bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym $mod+F1 exec nemo
 # bindsym $mod+Shift+F1 exec gksu nemo
 bindsym $mod+F2 exec firefox
-# bindsym $mod+F3 exec 
+bindsym $mod+F3 exec vscodium
 # bindsym $mod+F4 exec 
 # bindsym $mod+F5 exec 
 
@@ -189,10 +189,10 @@ mode "resize" {
     bindsym semicolon resize grow width 5 px or 5 ppt
     
     # same bindings, but for the arrow keys
-    bindsym Left resize shrink width 10 px or 10 ppt
-    bindsym Down resize grow height 10 px or 10 ppt
-    bindsym Up resize shrink height 10 px or 10 ppt
-    bindsym Right resize grow width 10 px or 10 ppt
+    bindsym Left resize shrink width 5 px or 5 ppt
+    bindsym Down resize grow height 5 px or 5 ppt
+    bindsym Up resize shrink height 5 px or 5 ppt
+    bindsym Right resize grow width 5 px or 5 ppt
     
     # exit resize mode: Enter or Escape
     bindsym Return mode "default"
@@ -362,8 +362,8 @@ bar {
 ##########################
 
 # Set inner/outer gaps
-gaps inner 8
-gaps outer 5
+gaps inner 6
+gaps outer -2
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>
