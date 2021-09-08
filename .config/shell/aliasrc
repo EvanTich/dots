@@ -27,6 +27,8 @@ alias \
 
 # abbreviations
 alias \
+    cd.="cd .." \
+    cd..="cd ../.." \
     ll="ls -l" \
     la="ls -la" \
     update="sudo pacman -Syu" \
