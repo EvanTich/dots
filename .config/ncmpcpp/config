@@ -3,3 +3,6 @@
 ncmpcpp_directory = "~/.config/ncmpcpp"
 lyrics_directory = "~/.local/share/lyrics"
 mpd_music_dir = "~/Music"
+
+mpd_host = localhost
+mpd_port = 6600
