@@ -90,6 +90,7 @@ A,vscodium,         "is for coding."
 #,THEMES,               PACKAGES THAT HELP THEME
 ,materia-gtk-theme, "for materia dark compact."
 ,python-pywal,      "helps with color schemes."
+,noto-fonts-emoji,  "enables emoji support."
 ,ttc-iosevka,       "is a nice font."
 ,extra/ttf-hack,    "is a nice font."
 ,ttf-fantasque-sans-mono, "is a nice font."
