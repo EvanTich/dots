@@ -76,7 +76,7 @@ battery all {
 
 volume master {
     format = "♪: %volume"
-    format_muted = "♪: ~%volume~"
+    format_muted = "♪: %volume"
     device = "pulse:1"
 }
 

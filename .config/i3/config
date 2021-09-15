@@ -188,11 +188,23 @@ mode "resize" {
     bindsym l resize shrink height 5 px or 5 ppt
     bindsym semicolon resize grow width 5 px or 5 ppt
     
-    # same bindings, but for the arrow keys
+    # and arrow keys
     bindsym Left resize shrink width 5 px or 5 ppt
     bindsym Down resize grow height 5 px or 5 ppt
     bindsym Up resize shrink height 5 px or 5 ppt
     bindsym Right resize grow width 5 px or 5 ppt
+
+    # double shrinking/growing when holding shift
+    bindsym Shift+j resize shrink width 10 px or 10 ppt
+    bindsym Shift+k resize grow height 10 px or 10 ppt
+    bindsym Shift+l resize shrink height 10 px or 10 ppt
+    bindsym Shift+semicolon resize grow width 10 px or 10 ppt
+
+    # and arrow keys
+    bindsym Shift+Left resize shrink width 10 px or 10 ppt
+    bindsym Shift+Down resize grow height 10 px or 10 ppt
+    bindsym Shift+Up resize shrink height 10 px or 10 ppt
+    bindsym Shift+Right resize grow width 10 px or 10 ppt
     
     # exit resize mode: Enter or Escape
     bindsym Return mode "default"
@@ -282,10 +294,6 @@ for_window [instance="dropdown"] floating enable
 # for_window [instance="dropdown"] move position center
 # for_window [instance="dropdown"] move scratchpad
 # for_window [instance="dropdown"] sticky enable
-
-for_window [class="Steam"] floating enable border normal
-for_window [class="Lutris"] floating enable
-for_window [class="Wine"] floating enable
 
 # TODO
 
@@ -420,13 +428,13 @@ mode "$mode_gaps_outer" {
 #####     STARTUP     #####
 ###########################
 
+# exec --no-startup-id "i3-msg 'workspace $ws1; append_layout home/$USER/.config/i3/workspace-1.json'"
+
 # Execute on startup
 exec --no-startup-id kitty --class gotop --hold gotop
-exec --no-startup-id kitty --class lf --hold lf
-exec --no-startup-id kitty --class ncmpcpp --hold ncmpcpp
 exec --no-startup-id kitty --class cava --hold cava
-exec --no-startup-id kitty --class cbonsai --hold cbonsai
-
+exec --no-startup-id kitty
+exec --no-startup-id kitty
 
 # Swap to workspace
 # exec --no-startup-id i3-msg workspace $ws2

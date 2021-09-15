@@ -28,3 +28,4 @@
 - [ ] latex support + editor
 - [ ] keyring?
 - [ ] xbacklight
+- [ ] i3 layouts
