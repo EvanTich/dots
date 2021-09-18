@@ -55,7 +55,7 @@ install() {
             installmsg "$program" "$comment" "npm" "$n" "$total"
             npm install -g "$program" >/dev/null 2>&1 ;;
         *) 
-            installmsg "$program" "$comment" "the AUR" "$n" "$total"
+            installmsg "$program" "$comment" "pacman" "$n" "$total"
             sudo pacman --noconfirm --needed -S "$program" >/dev/null 2>&1 ;;
         esac
     done < /tmp/pkglist.csv ;
