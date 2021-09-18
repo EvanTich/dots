@@ -9,7 +9,7 @@
     - [ ] edit picom config
     - [ ] edit i3status config
         - [ ] emojis
-        - [ ] cpu temp
+        - [x] ~~cpu temp~~
         - [ ] i3blocks?
     - [ ] edit i3 config (no autostarts in the config, damnit)
         - [x] workspace names
@@ -18,6 +18,7 @@
     - [x] gtk-3.0, gtk-2.0
     - [ ] actual fonts.conf
     - [ ] mpd conf
+    - [ ] userChrome.css (smaller tabs, square-ish, more compact)
 - [ ] change the bell in the timer
 - [x] remove .vim and only use nvim?
 - [ ] show shortcuts in README
