@@ -37,13 +37,24 @@ echo "%wheel ALL=(ALL) ALL
 ```
 
 ## During the Install Script
-Go get some coffee, sit outside, listen to the rain, etc. Enjoy yourself. After the packages are installed, there may be prompts for replacing files in `.config` and `.local`. Follow the prompts, it should be the final thing you need to do.
+Go get some coffee, sit outside, listen to the rain, etc. Enjoy yourself.
+
+### Install Script Help
+#### `-h`
+- Points you in the direction of this README
+#### `-o (some|all|vim|move)`
+- Tells the script generally what you want it to do. 
+- `"some"` only tries to install packages not already installed.
+- `"all"` goes through the whole install process.
+- `"vim"` only installs and sets up vim stuff.
+- `"move"` sets up the home directory, and moves `.config` and `.local`.
+
 
 ### Things Installed
 [Packages](./pkglist.csv) are sorted in the following order: important → tools (including python, cargo, npm) → everyday software → themes → fun stuff
 
 ## After Running the Install Script
-Install computer-specific packages (like display drivers) and other things that fit your fancy (like `zsh-syntax-highlighting`). Start/enable services like `bluetooth.service`, `fstrim.timer` if you have an SSD that supports discarding. Install microcode updates `amd-ucode` or `intel-ucode` (see the [wiki](https://wiki.archlinux.org/title/microcode)).
+Install computer-specific packages (like display drivers) and other things that fit your fancy (like `zsh-syntax-highlighting`). Start/enable services like `bluetooth.service`, `fstrim.timer` if you have an SSD that supports discarding. Install microcode updates `amd-ucode` or `intel-ucode` (see the [wiki](https://wiki.archlinux.org/title/microcode)). [Install Steam](https://wiki.archlinux.org/title/steam).
 
 ### Other Cool Things
 Another bar like `polybar`, or [yabar](https://github.com/geommer/yabar).
