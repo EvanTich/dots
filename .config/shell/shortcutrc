@@ -1,4 +1,7 @@
 #!/bin/sh
+# Aliases for general shortcuts for quickly doing everyday things.
 
-# TODO
-# alias \
+alias \
+    dots="vscodium ~/dots" \
+    todo="vim ~/Desktop/notes/TODO.md"
+    # TODO
