@@ -70,6 +70,8 @@ move_dirs() {
     cp -ri .local   ~
     ln -s ~/.config/x11/xprofile ~/.xprofile 
     ln -s ~/.config/shell/profile ~/.zprofile
+
+    # TODO: firefox configs
 }
 move_dirs
 
