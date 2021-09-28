@@ -17,7 +17,7 @@
         - [ ] rules
     - [x] gtk-3.0, gtk-2.0
     - [ ] actual fonts.conf
-    - [ ] mpd conf
+    - [x] mpd conf
 - [ ] change the bell in the timer
 - [x] remove .vim and only use nvim?
 - [ ] show shortcuts in README
@@ -29,3 +29,7 @@
 - [ ] keyring?
 - [ ] xbacklight
 - [ ] i3 layouts
+- [ ] dmenu file opener
+    - given a directory list all files, open one of them using vim
+- [ ] automate firefox config installation
+- [ ] screenshot script (move screenshot stuff from i3 config to script)
