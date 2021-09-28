@@ -31,7 +31,7 @@ order += "tztime local"
 cpu_temperature 0 {
     format = " %degrees °C "
     max_threshold = 70
-    path = "TODO"
+    # path = "TODO"
 }
 
 cpu_usage {
