@@ -104,6 +104,8 @@ install() {
 move_dirs() {
     echo "Moving configuration files..."
 
+    # TODO: use diff -qr dirA dirB to see file differences
+
     cp -ri .config  ~
     cp -ri .local   ~
     ln -s ~/.config/x11/xprofile ~/.xprofile 
