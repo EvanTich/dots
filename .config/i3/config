@@ -48,8 +48,15 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec --no-startup-id dmenu_run
 
 # audio
-# exec --no-startup-id pulseaudio
 bindsym $mod+Ctrl+m exec pavucontrol
+
+# applications
+bindsym $mod+F1 exec nemo
+# bindsym $mod+Shift+F1 exec gksu nemo
+bindsym $mod+F2 exec firefox
+bindsym $mod+F3 exec vscodium
+bindsym $mod+F4 exec discord
+bindsym $mod+F5 exec steam
 
 # volume keys
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
@@ -71,14 +78,6 @@ bindsym XF86AudioPause exec --no-startup-id playerctl play-pause
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 
-# applications
-bindsym $mod+F1 exec nemo
-# bindsym $mod+Shift+F1 exec gksu nemo
-bindsym $mod+F2 exec firefox
-bindsym $mod+F3 exec vscodium
-# bindsym $mod+F4 exec 
-# bindsym $mod+F5 exec 
-
 # screenshotting
 bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/screenshot-$(date +'%F %T').png"
 bindsym $mod+Print exec --no-startup-id maim -i $(xdotool getactivewindow) "/home/$USER/Pictures/screenshot-$(date +'%F %T').png"
@@ -87,9 +86,6 @@ bindsym $mod+Shift+s exec --no-startup-id "maim -c .369,.506,.675 -b 2 -u -s | x
 
 # murder the x window
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
-
-# Lock screen
-bindsym $mod+9 exec --no-startup-id blurlock
 
 # change focus
 bindsym $mod+j focus left
@@ -153,8 +149,11 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
+# Lock screen
+# bindsym $mod+9 exec --no-startup-id blurlock
+
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "prompt 'Do you really want to exit i3?' 'i3-msg exit'"
+bindsym $mod+Shift+e exec --no-startup-id prompt 'Do you really want to exit i3?' 'i3-msg exit'
 
 #################################
 #####     BINDING MODES     #####
@@ -279,7 +278,7 @@ assign [title="lf"] $ws1
 assign [class="gotop"] $ws1
 assign [title="ncmpcpp"] $ws1
 assign [class="firefox"] $ws2
-assign [class="code-oss"] $ws3
+assign [class="vscodium"] $ws3
 assign [class="discord"] $ws4
 assign [class="slack"] $ws4
 assign [class="Spotify"] $ws4
@@ -294,6 +293,8 @@ for_window [instance="dropdown"] floating enable
 # for_window [instance="dropdown"] move position center
 # for_window [instance="dropdown"] move scratchpad
 # for_window [instance="dropdown"] sticky enable
+
+for_window [class="^pavucontrol$"] floating enable
 
 # fix steam up
 for_window [class="^Steam$" title="^Friends$"] floating enable
