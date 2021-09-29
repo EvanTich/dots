@@ -70,3 +70,26 @@ A display manager for a nice loggin screen like [ly](https://github.com/nullgemm
 - [uim](https://wiki.archlinux.org/title/Input_Japanese_using_uim) for Japanese character input.
 - [awesome-console-services](https://github.com/chubin/awesome-console-services) for a neat curated list of website services (usable with `curl`).
 - [suckless](https://suckless.org/) and the many listed projects that are inspired by suckless.
+
+### Shortcuts
+M - Mod (Windows key, Command)\
+C - Ctrl\
+S - Shift
+
+Shortcut | Description
+--------:|------------
+M+Return | Start terminal
+M+S+q    | Kill focused window
+M+C+x    | Murder X window
+M+d      | Program launcher
+M+C+m    | Audio mixer
+M+F1     | Run Nemo
+M+F2     | Run Firefox
+M+F3     | Run VSCode
+M+F4     | Run Discord
+M+F5     | Run Steam
+M+0      | Shutdown/Lock/Exit/Suspend/Reboot Menu
+PrtSc    | Fullscreen(s) screenshot
+M+PrtSc  | Screenshot active window
+M+S+PrtSc | Screenshot selection
+M+S+s    | Screenshot selection, save to clipboard
