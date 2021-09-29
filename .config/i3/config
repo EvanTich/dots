@@ -79,10 +79,10 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 
 # screenshotting
-bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/screenshot-$(date +'%F %T').png"
-bindsym $mod+Print exec --no-startup-id maim -i $(xdotool getactivewindow) "/home/$USER/Pictures/screenshot-$(date +'%F %T').png"
-bindsym $mod+Shift+Print exec --no-startup-id maim -c .369,.506,.675 -b 2 -s "/home/$USER/Pictures/screenshot-$(date +'%F %T').png"
-bindsym $mod+Shift+s exec --no-startup-id "maim -c .369,.506,.675 -b 2 -u -s | xclip -selection clipboard -t image/png"
+bindsym Print exec --no-startup-id screenshot fullscreen
+bindsym $mod+Print exec --no-startup-id screenshot window
+bindsym $mod+Shift+Print exec --no-startup-id screenshot area
+bindsym $mod+Shift+s exec --no-startup-id screenshot area-copy
 
 # murder the x window
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
@@ -294,7 +294,9 @@ for_window [instance="dropdown"] floating enable
 # for_window [instance="dropdown"] move scratchpad
 # for_window [instance="dropdown"] sticky enable
 
-for_window [class="^pavucontrol$"] floating enable
+for_window [class="pavucontrol"] floating enable
+
+for_window [class="zoom"] floating enable # manually unfloat windows when needed
 
 # fix steam up
 for_window [class="^Steam$" title="^Friends$"] floating enable
