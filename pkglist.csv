@@ -30,6 +30,7 @@
 ,pavucontrol,       "is for managing pulse audio."
 ,pasystray,         "is a tray icon for pulse audio."
 ,polkit-gnome,      "provides a way for non-privileged processes to talk to privileged ones."
+,gnome-keyring,     "serves as the system keyring."
 ,xss-lock,          "dims and locks the computer."
 ,xclip,             "helps with the clipboard."
 A,clipit,           "is a lightweight clipboard manager."

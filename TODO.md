@@ -27,10 +27,10 @@
 - [x] see if I like workspace numbers or not
 - [ ] checkout rofi (speed, uses, etc.)
 - [ ] latex support + editor
-- [ ] keyring?
+- [x] keyring?
 - [ ] xbacklight
-- [ ] i3 layouts
+- [x] i3 layout
 - [ ] dmenu file opener
     - given a directory list all files, open one of them using vim
 - [ ] automate firefox config installation
-- [ ] screenshot script (move screenshot stuff from i3 config to script)
+- [x] screenshot script (move screenshot stuff from i3 config to script)
