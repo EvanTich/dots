@@ -6,11 +6,11 @@
 - [x] ~~update~~ remove README package list
 - [x] SUDO_ASKPASS script
 - [ ] configs
-    - [ ] edit picom config
-    - [ ] edit i3status config
+    - [x] edit picom config
+    - [x] edit i3status config
         - [x] emojis
         - [x] ~~cpu temp~~
-        - [ ] i3blocks?
+        - [x] i3blocks? maybe
     - [ ] edit i3 config (no autostarts in the config, damnit)
         - [x] workspace names
         - [ ] colors
@@ -28,9 +28,10 @@
 - [ ] checkout rofi (speed, uses, etc.)
 - [ ] latex support + editor
 - [x] keyring?
-- [ ] xbacklight
+- [x] xbacklight
 - [x] i3 layout
 - [ ] dmenu file opener
     - given a directory list all files, open one of them using vim
 - [ ] automate firefox config installation
 - [x] screenshot script (move screenshot stuff from i3 config to script)
+- [ ] fix .desktop files in /usr/share/applications (terminal programs don't run)
