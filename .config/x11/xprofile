@@ -22,6 +22,7 @@ xrandr --output DP-1 --primary --mode 1920x1080 --rate 144.00 \
 . $HOME/.fehbg &        # wallpaper
 xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources & # use xresources
 mpd &                   # music player daemon
+mpDris2 &               # playerctl to mpd interaction
 picom --daemon          # window compositing
 dunst &                 # notifications
 redshift &              # ease on the eyes
