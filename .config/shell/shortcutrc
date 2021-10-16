@@ -3,5 +3,10 @@
 
 alias \
     dots="vscodium ~/dots" \
-    todo="vim ~/Desktop/notes/TODO.md"
+    todo="vim ~/Desktop/notes/TODO.md" \
+    e="cd /mnt/e; ll" \
+    d="cd /mnt/d; ll" \
+    usb="cd /mnt/usb; ll" \
+    phone="cd /mnt/phone; ll" \
+    mphone="ifuse /mnt/phone; cd /mnt/phone; ll"
     # TODO
