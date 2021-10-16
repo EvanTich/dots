@@ -3,3 +3,6 @@ https://api.quantamagazine.org/feed/ news interesting
 # reddit
 https://www.reddit.com/r/battlestations.rss "~REDDIT /r/battlestations"
 https://www.reddit.com/r/unixporn.rss "~REDDIT /r/unixporn"
+# cool dudes writing cool posts
+https://vfoley.xyz/rss.xml
+https://tonsky.me/blog/atom.xml
