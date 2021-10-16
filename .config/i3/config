@@ -57,6 +57,7 @@ bindsym $mod+F2 exec firefox
 bindsym $mod+F3 exec vscodium
 bindsym $mod+F4 exec discord
 bindsym $mod+F5 exec steam
+bindsym $mod+F6 exec kitty newsboat
 
 # volume keys
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
@@ -298,6 +299,8 @@ for_window [class="pavucontrol"] floating enable
 
 for_window [class="zoom"] floating enable # manually unfloat windows when needed
 
+for_window [class="firefox" title="^Library$"] floating enable # bookmark manager window
+
 # fix steam up
 for_window [class="^Steam$" title="^Friends$"] floating enable
 for_window [class="^Steam$" title="Steam - News"] floating enable
@@ -443,13 +446,17 @@ mode "$mode_gaps_outer" {
 #####     STARTUP     #####
 ###########################
 
-exec --no-startup-id i3-msg 'workspace $ws1; append_layout home/$USER/.config/i3/workspace-1.json'
+exec --no-startup-id i3-msg 'workspace --no-auto-back-and-forth $ws1; append_layout /home/evan/.config/i3/workspace-1.json'
 
 # Execute on startup
 exec --no-startup-id kitty --class gotop --hold gotop
 exec --no-startup-id kitty --class cava --hold cava
 exec --no-startup-id kitty
 exec --no-startup-id kitty
+
+# setup workspaces
+exec --no-startup-id i3-msg 'workspace --no-auto-back-and-forth $ws1; move workspace to output left'
+exec --no-startup-id i3-msg 'workspace --no-auto-back-and-forth $ws2; move workspace to output primary'
 
 # Swap to workspace
 # exec --no-startup-id i3-msg workspace $ws2
