@@ -25,7 +25,8 @@
 - [x] mimeapps.list in .config, .desktop entries in .local/share/applications
 - [ ] more apps in mimeapps.list
 - [x] see if I like workspace numbers or not
-- [ ] checkout rofi (speed, uses, etc.)
+- [x] checkout rofi (speed, uses, etc.)
+    - [ ] swap to using rofi
 - [ ] latex support + editor
 - [x] keyring?
 - [x] xbacklight

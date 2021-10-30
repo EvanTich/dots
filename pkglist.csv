@@ -16,6 +16,7 @@
 ,libnotify,         "allows desktop notifications (notify-send)."
 ,dunst,             "is a notification system."
 ,dmenu,             "is for neat scripts."
+,rofi,              "for slick menus."
 ,kitty,             "is a nice terminal emulator."
 ,redshift,          "is good for your eyes."
 ,bluez,             "enables bluetooth connectivity."

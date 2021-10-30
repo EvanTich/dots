@@ -45,7 +45,7 @@ bindsym $mod+Return exec kitty
 bindsym $mod+Shift+q kill
 
 # program launcher
-bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+d exec --no-startup-id rofi -show run
 
 # audio
 bindsym $mod+Ctrl+m exec pavucontrol
@@ -56,6 +56,7 @@ bindsym $mod+F1 exec nemo
 bindsym $mod+F2 exec firefox
 bindsym $mod+F3 exec vscodium
 bindsym $mod+F4 exec discord
+bindsym $mod+Shift+F4 exec slack
 bindsym $mod+F5 exec steam
 bindsym $mod+F6 exec kitty newsboat
 
@@ -279,7 +280,7 @@ assign [title="lf"] $ws1
 assign [class="gotop"] $ws1
 assign [title="ncmpcpp"] $ws1
 assign [class="firefox"] $ws2
-assign [class="vscodium"] $ws3
+assign [class="VSCodium"] $ws3
 assign [class="discord"] $ws4
 assign [class="slack"] $ws4
 assign [class="Spotify"] $ws4
@@ -296,6 +297,7 @@ for_window [instance="dropdown"] floating enable
 # for_window [instance="dropdown"] sticky enable
 
 for_window [class="pavucontrol"] floating enable
+for_window [class="blueman-manager"] floating enable
 
 for_window [class="zoom"] floating enable # manually unfloat windows when needed
 
