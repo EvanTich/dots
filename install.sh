@@ -104,7 +104,7 @@ install() {
 move_dirs() {
     echo "Moving configuration files..."
 
-    # TODO: use diff -qr dirA dirB to see file differences
+    # TODO: use diff -bqr dirA dirB to see file differences
 
     cp -ri .config  ~
     cp -ri .local   ~
