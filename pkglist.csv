@@ -17,6 +17,7 @@
 ,dunst,             "is a notification system."
 ,dmenu,             "is for neat scripts."
 ,rofi,              "for slick menus."
+A,rofi-dmenu,       "symlinks /usr/bin/dmenu to rofi."
 ,kitty,             "is a nice terminal emulator."
 ,redshift,          "is good for your eyes."
 ,bluez,             "enables bluetooth connectivity."
