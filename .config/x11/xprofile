@@ -16,7 +16,7 @@ if test -z "$DBUS_SESSION_BUS_ADDRESS" ; then
 fi
 
 xrandr --output DP-4 --primary --mode 1920x1080 --rate 144.00 \
-       --output DP-0 --left-of DP-1 --mode 1920x1080 --rate 144.00
+       --output DP-0 --left-of DP-4 --mode 1920x1080 --rate 144.00
 
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & # auth agent
 . $HOME/.fehbg &        # wallpaper
