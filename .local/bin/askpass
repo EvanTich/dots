@@ -1,8 +1,6 @@
 #!/bin/sh
 
 # SUDO_ASKPASS script, will be used as a password prompt.
-
-# this simply doesn't hide password input and I am sad
-dmenu -fn Monospace-18 -p "$1" <&- && echo
+rofi -dmenu  -password -no-fixed-num-lines -p "Password"
 
 exit 0
