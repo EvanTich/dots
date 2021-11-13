@@ -36,3 +36,4 @@
 - [ ] automate firefox config installation
 - [x] screenshot script (move screenshot stuff from i3 config to script)
 - [ ] fix .desktop files in /usr/share/applications (terminal programs don't run)
+- [ ] graphical applications in another pkglist
