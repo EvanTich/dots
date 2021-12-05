@@ -8,5 +8,6 @@ alias \
     d="cd /mnt/d; ll" \
     usb="cd /mnt/usb; ll" \
     phone="cd /mnt/phone; ll" \
-    mphone="ifuse /mnt/phone; cd /mnt/phone; ll"
+    mphone="ifuse /mnt/phone; cd /mnt/phone; ll" \
+    umphone"fusermount -u /mnt/phone"
     # TODO
