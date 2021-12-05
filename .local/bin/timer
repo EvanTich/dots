@@ -7,4 +7,4 @@ sleep $1
 # Notify the user
 echo "Your timer has ended."
 notify-send "Your timer has ended."
-mpv --quiet ~/.local/share/bell.mp3 >/dev/null
+mpv --quiet --idle=once --loop=no ~/.local/share/bell.mp3 >/dev/null
