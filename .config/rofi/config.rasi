@@ -1,5 +1,5 @@
 configuration {
-  modi: "window,run,drun";
+  modi: "window,run,drun,ssh";
 	font: "mono 10";
 /*	location: 0;*/
 /*	yoffset: 0;*/
