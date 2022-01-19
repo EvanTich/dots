@@ -11,6 +11,10 @@ export EDITOR="nvim"
 export TERMINAL="kitty"
 export BROWSER="firefox"
 
+# for gpu
+# export __NV_PRIME_RENDER_OFFLOAD="1"
+# export __GLX_VENDOR_LIBRARY_NAME="nvidia"
+
 # clean up home directory
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"

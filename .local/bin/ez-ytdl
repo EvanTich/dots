@@ -1,0 +1,12 @@
+#!/bin/sh
+
+for url in "$@"; do
+  echo "Downloading thumbnail for $url"
+  curl "$(youtube-dl --add-metadata --output "%(artist)s - %(title)s.%(ext)s" "$url" --get-thumbnail)" --output artwork.tmp
+  convert artwork.tmp -thumbnail '720x720^' -gravity center -extent 720x720 artwork.jpg
+  echo "Downloading $url"
+  file="$(youtube-dl --add-metadata --output "%(artist)s - %(title)s.%(ext)s" -f "bestaudio[ext=m4a]" "$url" | awk '/Destination/ {$1=$2=""; print substr($0,3)}')"
+  echo "Embedding thumbnail in \"$file\""
+  atomicparsley "$file" --artwork artwork.jpg
+  mv *-temp-*.m4a "$file"
+done
