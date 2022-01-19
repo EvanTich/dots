@@ -1,0 +1,66 @@
+#!/bin/sh
+
+# Sets the wallpaper using feh.
+
+CACHE_FILE="$XDG_DATA_HOME/wallpaper-cache"
+CACHE_SIZE=10
+
+setwallpaper() {
+    # set given wallpaper from path, add path to cache
+    feh --bg-max "$@" &
+
+    for path in "$@"; do
+        echo "$(realpath "$path")" >> "$CACHE_FILE"
+    done
+
+    if [[ $((wc -l "$CACHE_FILE")) -gt CACHE_SIZE ]]; then
+        tail -n $CACHE_SIZE "$CACHE_FILE" > "$CACHE_FILE.tmp" \
+        && mv "$CACHE_FILE.tmp" "$CACHE_FILE" \
+        && rm "$CACHE_FILE.tmp"
+    fi
+}
+
+pickwallpaper() {
+    # get wallpaper, ensure wallpaper path is not in the cache
+    num=$(($CACHE_SIZE + $1))
+    find "$2" -type f | shuf -n $num | while read file; do
+        # the percent chance to get 
+        path=`realpath $file`
+        if ! grep "$path" "$CACHE_FILE"; then
+            wallpapers+=("$path")
+            [[ ${#wallpapers[@]} -eq $1 ]] && break
+        fi
+    done
+}
+
+getwallpaper() {
+    cat "$CACHE_FILE"
+}
+
+while getopts "sgh" o; do
+    case "${o}" in
+        h) echo "Pass the directory to the wallpapers or any amount of files as parameters." && exit 1 ;;
+        g) getwallpaper && exit 0 ;;
+        s) setup && exit 0 ;;
+    esac
+done
+
+# if number of wallpapers 
+if [[ $# -eq 0 ]]; then
+    echo "No argument provided."
+    exit 1
+fi
+
+if [ -d "$1" ]; then
+    # pick random wallpaper from the given folder
+    
+    # # of wallpapers to pick = number of screens
+    n=$(xrandr --listmonitors | grep 'Monitors' | awk {'print $2'})
+
+    wallpapers=()
+    pickwallpaper $n "$1"
+    setwallpaper "${wallpapers[@]}"
+elif [ -f "$1" ]; then
+    # wallpaper path provided and file exists
+    setwallpaper "$@"
+fi
