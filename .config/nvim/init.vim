@@ -1,4 +1,78 @@
 " my vim :)
+set encoding=utf-8
+let mapleader=" "
+
+" plugins
+call plug#begin('~/.config/nvim/plugged')
+" polyglot + coc
+Plug 'sheerun/vim-polyglot'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'nekonako/xresources-nvim'
+
+" indentation guides
+Plug 'yggdroot/indentline'
+let g:indentLine_char='▏'
+let g:indentLine_fileTypeExclude=['markdown', 'vimwiki']
+
+" code focus
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+let g:limelight_conceal_ctermfg='gray'
+nnoremap <Leader>go :Goyo<CR>
+augroup Goyo
+    autocmd! User GoyoEnter Limelight
+    autocmd! User GoyoLeave Limelight! | hi Normal guibg=NONE ctermbg=NONE
+augroup END
+
+" nerd tree
+Plug 'scrooloose/nerdtree'
+nnoremap <Leader>nt :NERDTreeToggle<CR>
+
+" nerd tree git integration
+Plug 'xuyuanp/nerdtree-git-plugin'
+
+" really cool/useful movement
+Plug 'easymotion/vim-easymotion'
+
+" comment manipulation
+Plug 'preservim/nerdcommenter'
+let g:NERDSpaceDelims=1
+let g:NERDCompactSexyComs=1
+let g:NERDAltDelims_java=1
+let g:NERDTrimTrailingWhitespace=1
+let g:NERDToggleCheckAllLines=1
+
+" start screen when no file is opened
+Plug 'mhinz/vim-startify'
+" let g:startify_custom_header = [...]
+
+" git diffs in the gutter
+Plug 'airblade/vim-gitgutter'
+
+" highlight any trailing whitespace
+Plug 'bronson/vim-trailing-whitespace'
+
+" automatically pair delimiters
+Plug 'jiangmiao/auto-pairs'
+
+" icons for nerdtree and others
+Plug 'ryanoasis/vim-devicons'
+
+" airline + themes
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+let g:airline_powerline_fonts=1
+
+" markdown table creator
+Plug 'dhruvasagar/vim-table-mode'
+
+" personal wiki and organization things
+Plug 'vimwiki/vimwiki'
+let g:vimwiki_list=[{'path': '~/Documents/VimWiki/vimwiki/',
+    \ 'path_html': '~/Documents/VimWiki/vimwiki_html/',
+    \ 'template_path': '~/Documents/VimWiki/vimwiki/templates/'}]
+
+call plug#end()
 
 " copy + paste
 vnoremap <C-c> "+y
@@ -7,7 +81,9 @@ vnoremap <C-c> "*y :let @+=@*<CR>
 
 " general
 syntax on                       " enable syntax highlighting
+filetype plugin on              " run filetype plugins
 set number                      " sets the line numbers
+set relativenumber              " relative numbers :)
 set ruler                       " show cursor position
 set numberwidth=4               " number of columns (minus one) taken up by the line number
 " set tabstop=4                   " one tab = 4 spaces
@@ -33,6 +109,7 @@ set mouse=a                     " allow the mouse cursor to work when needed
 set clipboard=unnamedplus       " copy/paste between vim and system
 " set autoread                    " auto-read the file if it is changed outside of vim
 set hidden                      " apparently useful
+set nospell                     " get rid of spell checking
 
 set t_Co=256                    " fix colorscheme
 set laststatus=2                " fix vim-airline
@@ -41,18 +118,33 @@ set laststatus=2                " fix vim-airline
 " if has('nvim')
 " endif
 
+" mappings to move between splits
+nnoremap <Leader>wh :wincmd h<CR>
+nnoremap <Leader>wl :wincmd l<CR>
+nnoremap <Leader>wj :wincmd j<CR>
+nnoremap <Leader>wk :wincmd k<CR>
+nnoremap <Leader>w  :wincmd<space>
+
+" mapping to get rid of highlights from searches
+nnoremap <Leader>hl :let @/=""<CR>
+
+" mapping to get rid of trailing whitespace
+nnoremap <Leader>fw :FixWhitespace<CR>
+
+" CoC mappings
+nnoremap <Leader>ct     :CocCommand<space>terminal.Toggle<CR>
+tnoremap <Leader>ct     <C-\><C-n>:CocCommand<space>terminal.Toggle<CR>
+nnoremap <Leader>rcw    :CocCommand<space>document.renameCurrentWord<CR>
+nnoremap <Leader>cso    :CocList<space>outline<CR>
+nnoremap <Leader>y      :<C-u>CocList -A --normal yank<CR>
+nnoremap <leader>col    :CocList<CR>
+
+" vimwiki
+augroup VimWiki
+    autocmd FileType .wiki BufWritePost Vimwiki2HTML
+augroup END
+
 " colorschemes
-let g:airline_theme='jellybeans'
 " colorscheme jellybeans
 " colorscheme xresources
-
-" plugins
-call plug#begin('~/.config/nvim/plugged')
-Plug 'sheerun/vim-polyglot'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Plug 'nekonako/xresources-nvim'
-Plug 'scrooloose/NERDTree'
-Plug 'jiangmiao/auto-pairs'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-call plug#end()
+let g:airline_theme='jellybeans'
