@@ -79,6 +79,7 @@ S - Shift
 Shortcut | Description
 --------:|------------
 M+Return | Start terminal
+M+S+Return | Start terminal and SSH
 M+S+q    | Kill focused window
 M+C+x    | Murder X window
 M+d      | Program launcher
@@ -87,9 +88,53 @@ M+F1     | Run Nemo
 M+F2     | Run Firefox
 M+F3     | Run VSCode
 M+F4     | Run Discord
+M+S+F4   | Run Slack
 M+F5     | Run Steam
-M+0      | Shutdown/Lock/Exit/Suspend/Reboot Menu
+M+F6     | Run Newsboat
+M+0      | Power/System Menu
 PrtSc    | Fullscreen(s) screenshot
 M+PrtSc  | Screenshot active window
 M+S+PrtSc | Screenshot selection
 M+S+s    | Screenshot selection, save to clipboard
+M+S+c    | Reload i3 config
+M+S+r    | Restart i3 inplace
+M+S+e    | Exit i3
+
+### Vim
+Neovim is setup with many different plugins and here I will compile a list of some useful shortcuts.
+
+Plugin | Description
+-------|------------
+'sheerun/vim-polyglot' | Collection of language packs
+'neoclide/coc.nvim' | Conquer of Completion; IntelliSense on crack, in vim
+'yggdroot/indentline' | Indentation guides
+'junegunn/goyo.vim' | Code focus; One file on one screen
+'junegunn/limelight.vim' | Code focus; Only highlights the lines close to the cursor
+'scrooloose/nerdtree' | Nerd Tree; Neat file browser for vim
+'xuyuanp/nerdtree-git-plugin' | Git integration with the Nerd Tree file tree
+'preservim/nerdcommenter' | Comment manipulation
+'mhinz/vim-startify' | Start screen for vim. Looks very nice
+'airblade/vim-gitgutter' | Git diffs in the gutter, like IDEs
+'bronson/vim-trailing-whitespace' | Highlight trailing whitespace and automatically fix if wanted
+'jiangmiao/auto-pairs' | Automatically pair delimiters like parentheses
+'ryanoasis/vim-devicons' | Icons for Nerd Tree
+'vim-airline/vim-airline' | Airline
+'vim-airline/vim-airline-themes' | Airline themes
+'dhruvasagar/vim-table-mode' | Markdown table creator
+'vimwiki/vimwiki' | Personal wiki and organization
+'liuchengxu/vim-which-key' | Helps with commands
+
+L - Leader key (SPACE)
+
+Shortcut | Description
+--------:|------------
+C+c      | Copy
+C+p      | Paste
+L+wh+{hjkl} | Move between splits
+L+hl     | Reset highlighting from searches
+L+fw     | Fix trailing whitespace
+L+ct     | Toggle CoC terminal
+L+rcw    | Rename current word
+L+cso    | CoC outline
+L+y      | CoC yank
+L+col    | CocList
