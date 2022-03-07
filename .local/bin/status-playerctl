@@ -1,0 +1,14 @@
+#!/bin/sh
+# Script to print song information using playerctl.
+
+case $(playerctl status) in
+	Playing) symbol="" ;;
+	Paused)  symbol="" ;;
+	Stopped) 
+		echo -n " None" || exit 1
+		exit 0 ;;
+	*) 	exit 1 ;;
+esac
+
+echo -n `playerctl metadata --format "$symbol {{artist}} - {{trunc(title, 20)}}"`
+exit 0
