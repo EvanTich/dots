@@ -1,8 +1,15 @@
 #!/bin/sh
 
+# TODO: youtube-dl --flat-playlist --skip-download "https://www.youtube.com/playlist?list=PL_rY_-xKZ3Mcx6OmsC2gMVprrmkjY2-ZQ" --get-id > output.json
+# check if playlist
+#  yes -> get all video ids, add to list
+#  no -> download normally
+# take note of all files downloaded so they are not downloaded again (can override)
+
+
 for url in "$@"; do
   echo "Downloading thumbnail for $url"
-  curl "$(youtube-dl --add-metadata --output "%(artist)s - %(title)s.%(ext)s" "$url" --get-thumbnail)" --output artwork.tmp
+  curl "$(youtube-dl --get-thumbnail "$url")" --output artwork.tmp
   convert artwork.tmp -thumbnail '720x720^' -gravity center -extent 720x720 artwork.jpg
   echo "Downloading $url"
   file="$(youtube-dl --add-metadata --output "%(artist)s - %(title)s.%(ext)s" -f "bestaudio[ext=m4a]" "$url" | awk '/Destination/ {$1=$2=""; print substr($0,3)}')"
