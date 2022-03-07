@@ -72,6 +72,10 @@ let g:vimwiki_list=[{'path': '~/Documents/VimWiki/vimwiki/',
     \ 'path_html': '~/Documents/VimWiki/vimwiki_html/',
     \ 'template_path': '~/Documents/VimWiki/vimwiki/templates/'}]
 
+" help with commands
+Plug 'liuchengxu/vim-which-key'
+nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
+
 call plug#end()
 
 " copy + paste
