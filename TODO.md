@@ -37,3 +37,13 @@
 - [x] screenshot script (move screenshot stuff from i3 config to script)
 - [ ] fix .desktop files in /usr/share/applications (terminal programs don't run)
 - [ ] graphical applications in another pkglist
+- [ ] `status-playerctl` in status bar
+
+## Check out these things
+- [ ] Joplin (https://github.com/laurent22/joplin)
+
+## STYLING
+- [ ] find nice color theme for all programs
+    - i3, kitty, zathura, gtk3/2, htop, gotop, ncmcpp, less, nvim(?), newsboat, feh, dunst
+- [ ] make dunst look good
+- [ ] other..?
