@@ -5,32 +5,37 @@
 CACHE_FILE="$XDG_DATA_HOME/wallpaper-cache"
 CACHE_SIZE=10
 
+# TODO: add cache file option, cache size option, simulate run option
+# TODO: fix issue when cache is full and all files in folder are in it
+# TODO: make getwallpaper look pretty
+# TODO: make sure given file argument is image
+
 setwallpaper() {
     # set given wallpaper from path, add path to cache
     feh --bg-max "$@" &
+    # echo "wallpapers that would have been set: $@"
 
     for path in "$@"; do
         echo "$(realpath "$path")" >> "$CACHE_FILE"
     done
 
-    if [[ $((wc -l "$CACHE_FILE")) -gt CACHE_SIZE ]]; then
-        tail -n $CACHE_SIZE "$CACHE_FILE" > "$CACHE_FILE.tmp" \
-        && mv "$CACHE_FILE.tmp" "$CACHE_FILE" \
-        && rm "$CACHE_FILE.tmp"
+    if [[ $(cat "$CACHE_FILE" | wc -l) -gt CACHE_SIZE ]]; then
+        tail -n $CACHE_SIZE "$CACHE_FILE" > "$CACHE_FILE.tmp"
+        mv "$CACHE_FILE.tmp" "$CACHE_FILE"
     fi
 }
 
 pickwallpaper() {
     # get wallpaper, ensure wallpaper path is not in the cache
     num=$(($CACHE_SIZE + $1))
-    find "$2" -type f | shuf -n $num | while read file; do
-        # the percent chance to get 
-        path=`realpath $file`
-        if ! grep "$path" "$CACHE_FILE"; then
+    while read file; do
+        # the percent chance to get
+        path=`realpath "$file"`
+        if ! grep "$path" "$CACHE_FILE" && file -b --mime-type "$path" | grep "image"; then
             wallpapers+=("$path")
             [[ ${#wallpapers[@]} -eq $1 ]] && break
         fi
-    done
+    done < <(find "$2" -type f | shuf -n $num) >/dev/null
 }
 
 getwallpaper() {
@@ -45,19 +50,19 @@ while getopts "sgh" o; do
     esac
 done
 
-# if number of wallpapers 
+# if number of arguments is 0
 if [[ $# -eq 0 ]]; then
     echo "No argument provided."
     exit 1
 fi
 
 if [ -d "$1" ]; then
-    # pick random wallpaper from the given folder
-    
+    # pick random wallpaper(s) from the given folder
+
     # # of wallpapers to pick = number of screens
     n=$(xrandr --listmonitors | grep 'Monitors' | awk {'print $2'})
 
-    wallpapers=()
+    declare -a wallpapers=()
     pickwallpaper $n "$1"
     setwallpaper "${wallpapers[@]}"
 elif [ -f "$1" ]; then
