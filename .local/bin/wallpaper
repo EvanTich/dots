@@ -35,7 +35,7 @@ pickwallpaper() {
             wallpapers+=("$path")
             [[ ${#wallpapers[@]} -eq $1 ]] && break
         fi
-    done < <(find "$2" -type f | shuf -n $num) >/dev/null
+    done < <(find -L "$2" -type f | shuf -n $num) >/dev/null
 }
 
 getwallpaper() {
