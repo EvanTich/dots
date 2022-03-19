@@ -6,22 +6,25 @@ CACHE_FILE="$XDG_DATA_HOME/wallpaper-cache"
 CACHE_SIZE=25
 SIMULATE=0
 
-# TODO: fix issue when cache is full and all files in folder are in it
 # TODO: make getwallpaper look pretty
+
+clearcache() {
+    if [[ $(cat "$CACHE_FILE" | wc -l) -gt $1 ]]; then
+        tail -n $1 "$CACHE_FILE" > "$CACHE_FILE.tmp"
+        mv "$CACHE_FILE.tmp" "$CACHE_FILE"
+    fi
+}
 
 setwallpaper() {
     # set given wallpaper from path, add path to cache
-    feh --bg-max "$@" &
+    feh --no-fehbg --bg-max "$@" &
     # echo "wallpapers that would have been set: $@"
 
     for path in "$@"; do
         echo "$(realpath "$path")" >> "$CACHE_FILE"
     done
 
-    if [[ $(cat "$CACHE_FILE" | wc -l) -gt CACHE_SIZE ]]; then
-        tail -n $CACHE_SIZE "$CACHE_FILE" > "$CACHE_FILE.tmp"
-        mv "$CACHE_FILE.tmp" "$CACHE_FILE"
-    fi
+    clearcache $CACHE_SIZE
 }
 
 pickwallpaper() {
@@ -35,6 +38,13 @@ pickwallpaper() {
             [[ ${#wallpapers[@]} -eq $1 ]] && break
         fi
     done < <(find -L "$2" -type f | shuf -n $num) >/dev/null
+
+    if [[ ${#wallpapers[@]} -ne $1 ]]; then
+        echo "Not enough wallpapers in directory! Cache reduced to 5 lines."
+        clearcache 5
+        echo "Pass in --cache-size argument with proper amount of cache size (total number of wallpapers minus number of monitors)"
+        exit 2
+    fi
 }
 
 getwallpaper() {

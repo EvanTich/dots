@@ -19,7 +19,7 @@ xrandr --output DP-4 --primary --mode 1920x1080 --rate 144.00 \
        --output DP-0 --left-of DP-4 --mode 1920x1080 --rate 144.00
 
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & # auth agent
-. $HOME/.fehbg &        # wallpaper
+wallpaper /data/WALLPAPERS & # wallpaper
 xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources & # use xresources
 mpd &                   # music player daemon
 mpDris2 &               # playerctl to mpd interaction
