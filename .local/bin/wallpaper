@@ -3,12 +3,11 @@
 # Sets the wallpaper using feh.
 
 CACHE_FILE="$XDG_DATA_HOME/wallpaper-cache"
-CACHE_SIZE=10
+CACHE_SIZE=25
 SIMULATE=0
 
 # TODO: fix issue when cache is full and all files in folder are in it
 # TODO: make getwallpaper look pretty
-# TODO: make sure given file argument is image
 
 setwallpaper() {
     # set given wallpaper from path, add path to cache
@@ -121,6 +120,11 @@ if [ -d "$1" ]; then
     pickwallpaper $n "$1"
     setwallpaper "${wallpapers[@]}"
 elif [ -f "$1" ]; then
-    # wallpaper path provided and file exists
-    setwallpaper "$@"
+    # wallpaper path provided and files exist (as images)
+    if [ $(file -b --mime-type "$@" | grep "image" | wc -l) -eq "$#" ]; then
+        setwallpaper "$@"
+    else
+        echo "Not all input files are images! $@"
+        exit 1
+    fi
 fi
