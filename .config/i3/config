@@ -41,9 +41,6 @@ bindsym $mod+n border normal
 # start a terminal
 bindsym $mod+Return exec kitty
 
-# start ssh
-bindsym $mod+Shift+Return exec rofi -show ssh
-
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -58,7 +55,7 @@ bindsym $mod+F1 exec nemo
 # bindsym $mod+Shift+F1 exec gksu nemo
 bindsym $mod+F2 exec firefox
 bindsym $mod+F3 exec vscodium
-bindsym $mod+F4 exec discord
+bindsym $mod+F4 exec discord --ignore-gpu-blocklist --disable-features=UseOzonePlatform --enable-features=VaapiVideoDecoder --use-gl=desktop --enable-gpu-rasterization --enable-zero-copy
 bindsym $mod+Shift+F4 exec slack
 bindsym $mod+F5 exec steam
 bindsym $mod+F6 exec kitty newsboat
@@ -84,8 +81,8 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 
 # screenshotting
-bindsym Print exec --no-startup-id screenshot fullscreen
-bindsym $mod+Print exec --no-startup-id screenshot window
+bindsym Print exec --no-startup-id screenshot fullscreen-copy
+bindsym $mod+Print exec --no-startup-id screenshot window-copy
 bindsym $mod+Shift+Print exec --no-startup-id screenshot area
 bindsym $mod+Shift+s exec --no-startup-id screenshot area-copy
 
@@ -191,7 +188,7 @@ mode "resize" {
     bindsym k resize grow height 5 px or 5 ppt
     bindsym l resize shrink height 5 px or 5 ppt
     bindsym semicolon resize grow width 5 px or 5 ppt
-    
+
     # and arrow keys
     bindsym Left resize shrink width 5 px or 5 ppt
     bindsym Down resize grow height 5 px or 5 ppt
@@ -209,7 +206,7 @@ mode "resize" {
     bindsym Shift+Down resize grow height 10 px or 10 ppt
     bindsym Shift+Up resize shrink height 10 px or 10 ppt
     bindsym Shift+Right resize grow width 10 px or 10 ppt
-    
+
     # exit resize mode: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -285,7 +282,7 @@ assign [title="ncmpcpp"] $ws1
 assign [class="firefox"] $ws2
 assign [class="VSCodium"] $ws3
 assign [class="discord"] $ws4
-assign [class="Slack"] $ws4
+assign [class="slack"] $ws4
 assign [class="Spotify"] $ws4
 assign [class="Steam"] $ws5
 assign [class="Lutris"] $ws5
@@ -327,25 +324,25 @@ for_window [title="^Steam Keyboard$"] floating enable
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
 # https://i3wm.org/docs/userguide.html#xresources
-#                 $name            resource   fallback
-set_from_resource $term_background background
-set_from_resource $term_foreground foreground
-set_from_resource $term_color0     color0
-set_from_resource $term_color1     color1
-set_from_resource $term_color2     color2
-set_from_resource $term_color3     color3
-set_from_resource $term_color4     color4
-set_from_resource $term_color5     color5
-set_from_resource $term_color6     color6
-set_from_resource $term_color7     color7
-set_from_resource $term_color8     color8
-set_from_resource $term_color9     color9
-set_from_resource $term_color10    color10
-set_from_resource $term_color11    color11
-set_from_resource $term_color12    color12
-set_from_resource $term_color13    color13
-set_from_resource $term_color14    color14
-set_from_resource $term_color15    color15
+#                 $var             resource   fallback
+set_from_resource $background  background #111111
+set_from_resource $foreground  foreground #dedede
+set_from_resource $black       color0     #919191
+set_from_resource $red         color1     #e17373
+set_from_resource $green       color2     #94b978
+set_from_resource $yellow      color3     #ffb97b
+set_from_resource $blue        color4     #96bddb
+set_from_resource $magenta     color5     #e1c0fa
+set_from_resource $cyan        color6     #00988e
+set_from_resource $white       color7     #dedede
+set_from_resource $black_alt   color8     #bdbdbd
+set_from_resource $red_alt     color9     #ffa0a0
+set_from_resource $green_alt   color10    #bddeab
+set_from_resource $yellow_alt  color11    #ffdba0
+set_from_resource $blue_alt    color12    #b1d7f6
+set_from_resource $magenta_alt color13    #fbdaff
+set_from_resource $cyan_alt    color14    #19b2a7
+set_from_resource $white_alt   color15    #ffffff
 
 # Theme colors
 # class                 border  backgr. text    indic.   child_border
@@ -353,8 +350,8 @@ client.focused          #556064 #556064 #80FFF9 #FDF6E3
 client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
 client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
 client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
-client.placeholder      #000000 #0c0c0c #ffffff #000000 
-client.background       #2B2C2B
+client.placeholder      #000000 #0c0c0c #ffffff #000000
+client.background               #2B2C2B
 
 ###########################
 #####     TASKBAR     #####
@@ -365,9 +362,10 @@ bindsym $mod+m bar mode toggle
 
 bar {
     i3bar_command i3bar
-    status_command i3status
+    status_command i3status-rs ~/.config/i3status-rust/config.toml
+    font pango:FontAwesome, FantasqueSansMono 11
     position top
-    
+
     tray_output primary
 
     bindsym button4 nop
@@ -375,16 +373,16 @@ bar {
     strip_workspace_numbers no
 
     colors {
-        background #222D31
-        statusline #F9FAF9
-        separator  #454947
+        background $background
+        statusline $foreground
+        separator  $black
 
-#                          border  backgr. text
-        focused_workspace  #F9FAF9 #16a085 #292F34
-        active_workspace   #595B5B #353836 #FDF6E3
-        inactive_workspace #595B5B #222D31 #EEE8D5
-        binding_mode       #16a085 #2C2C2C #F9FAF9
-        urgent_workspace   #16a085 #FDF6E3 #E5201D
+#                          border       background  text
+        focused_workspace  $green_alt   $green      $background
+        active_workspace   $black       $background $white
+        inactive_workspace $black       $background $yellow
+        binding_mode       $red_alt     $red        $foreground
+        urgent_workspace   $red_alt     $red        $foreground
     }
 }
 

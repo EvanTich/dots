@@ -1,0 +1,48 @@
+# for i3status-rust
+
+[theme]
+name = "modern"
+[theme.overrides]
+idle_bg = "#111111"
+idle_fg = "#dedede"
+info_bg = "#3b4837"
+info_fg = "#a7c99d"
+
+[icons]
+name = "awesome"
+
+#[[block]]
+#block = "focused_window"
+#max_width = 50
+#show_marks = "visible"
+
+[[block]]
+block = "music"
+# player = "mpd"
+buttons = ["play", "next"]
+dynamic_width = true
+hide_when_empty = true
+max_width = 30
+
+[[block]]
+block = "cpu"
+interval = 1
+
+[[block]]
+block = "memory"
+display_type = "memory"
+format_mem = "{mem_used_percents}"
+format_swap = "{swap_used_percents}"
+
+[[block]]
+block = "sound"
+
+[[block]]
+block = "time"
+interval = 5
+format = "%a %m-%d %R"
+
+# [[block]]
+# block = "battery"
+# if_command = "test -e /sys/class/power_supply/BAT0"
+
