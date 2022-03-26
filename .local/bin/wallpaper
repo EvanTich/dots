@@ -6,7 +6,7 @@ CACHE_FILE="$XDG_DATA_HOME/wallpaper-cache"
 CACHE_SIZE=25
 SIMULATE=0
 
-# TODO: make getwallpaper look pretty
+# TODO: simulate
 
 clearcache() {
     if [[ $(cat "$CACHE_FILE" | wc -l) -gt $1 ]]; then
@@ -48,7 +48,7 @@ pickwallpaper() {
 }
 
 getwallpaper() {
-    cat "$CACHE_FILE"
+    tail -n "$1" "$CACHE_FILE"
 }
 
 setup() {
@@ -79,7 +79,11 @@ while (( "$#" )); do
             echo "Pass the directory to the wallpapers or any amount of files as parameters."
             exit 1 ;;
         -g|--get)
-            getwallpaper
+            if isnum "$2"; then
+                getwallpaper "$2"
+            else
+                getwallpaper "$(xrandr --listmonitors | grep 'Monitors' | awk {'print $2'})"
+            fi
             exit 0 ;;
         --cache-file)
             if ! isarg "$2"; then
