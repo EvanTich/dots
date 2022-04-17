@@ -1,19 +1,41 @@
 #!/bin/sh
 
-# TODO: youtube-dl --flat-playlist --skip-download "https://www.youtube.com/playlist?list=PL_rY_-xKZ3Mcx6OmsC2gMVprrmkjY2-ZQ" --get-id > output.json
-# check if playlist
-#  yes -> get all video ids, add to list
-#  no -> download normally
-# take note of all files downloaded so they are not downloaded again (can override)
+# TODO: option to override download archive
+TEMP_PATH="/tmp"
 
+download() {
+  url="$1"
+  thumb="$2"
 
-for url in "$@"; do
-  echo "Downloading thumbnail for $url"
-  curl "$(youtube-dl --get-thumbnail "$url")" --output artwork.tmp
-  convert artwork.tmp -thumbnail '720x720^' -gravity center -extent 720x720 artwork.jpg
+  if [[ $thumb -eq 1 ]]; then
+      echo "Downloading thumbnail for $url"
+      curl "$(youtube-dl --get-thumbnail "$url")" --output "$TEMP_PATH/artwork.tmp"
+    convert "$TEMP_PATH/artwork.tmp" -thumbnail '720x720^' -gravity center -extent 720x720 "$TEMP_PATH/artwork.jpg"
+  fi
+
   echo "Downloading $url"
-  file="$(youtube-dl --add-metadata --output "%(artist)s - %(title)s.%(ext)s" -f "bestaudio[ext=m4a]" "$url" | awk '/Destination/ {$1=$2=""; print substr($0,3)}')"
-  echo "Embedding thumbnail in \"$file\""
-  atomicparsley "$file" --artwork artwork.jpg
-  mv *-temp-*.m4a "$file"
+  file="$(youtube-dl --no-playlist --download-archive "~/Music/archive.txt" --add-metadata --output "%(artist)s - %(title)s.%(ext)s" -f "bestaudio[ext=m4a]" "$url" | awk '/Destination/ {$1=$2=""; print substr($0,3)}')"
+
+  if [[ $thumb -eq 1 ]]; then
+    echo "Embedding thumbnail in \"$file\""
+    atomicparsley "$file" --artwork "$TEMP_PATH/artwork.jpg"
+    mv *-temp-*.m4a "$file"
+  fi
+}
+
+thumbnail=1
+for arg in "$@"; do
+  case "$arg" in
+    "-t") thumbnail=1 ;;
+    "-n") thumbnail=0 ;;
+    *"playlist"*)
+      touch "$TEMP_PATH/playlist"
+      youtube-dl --flat-playlist --skip-download "$arg" --get-id > "$TEMP_PATH/playlist"
+      while read id; do
+        download "$id" "$thumbnail"
+      done < "$TEMP_PATH/playlist"
+      ;;
+    *) download "$arg" "$thumbnail" ;;
+  esac
 done
+
