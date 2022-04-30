@@ -6,6 +6,7 @@ TEMP_PATH="/tmp"
 download() {
   url="$1"
   thumb="$2"
+  tracknum="$3"
 
   if [[ $thumb -eq 1 ]]; then
       echo "Downloading thumbnail for $url"
@@ -18,21 +19,34 @@ download() {
 
   if [[ $thumb -eq 1 ]]; then
     echo "Embedding thumbnail in \"$file\""
-    atomicparsley "$file" --artwork "$TEMP_PATH/artwork.jpg"
+    if [ -z ${tracknum+x} ]; then
+      atomicparsley "$file" --artwork "$TEMP_PATH/artwork.jpg"
+    else
+      atomicparsley "$file" --artwork "$TEMP_PATH/artwork.jpg" --tracknum "$tracknum"
+    fi
     mv *-temp-*.m4a "$file"
   fi
 }
 
 thumbnail=1
+numbering=0
 for arg in "$@"; do
   case "$arg" in
-    "-t") thumbnail=1 ;;
-    "-n") thumbnail=0 ;;
+    "--thumbnails") thumbnail=1 ;;
+    "--no-thumbnails") thumbnail=0 ;;
+    "--tracknums") numbering=1 ;;
+    "--no-tracknums") numbering=0 ;;
     *"playlist"*)
       touch "$TEMP_PATH/playlist"
       youtube-dl --flat-playlist --skip-download "$arg" --get-id > "$TEMP_PATH/playlist"
+      n=1
       while read id; do
-        download "$id" "$thumbnail"
+        if [[ $numbering -eq 1 ]]; then
+          download "$id" "$thumbnail" "$n"
+        else
+          download "$id" "$thumbnail"
+        fi
+        n=$((n+1))
       done < "$TEMP_PATH/playlist"
       ;;
     *) download "$arg" "$thumbnail" ;;
