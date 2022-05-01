@@ -1,43 +1,42 @@
-! Material Dark theme
-!  from https://github.com/mbadolato/iTerm2-Color-Schemes
+! Jellybeans theme
 !
-*.foreground:  #e5e5e5
-*.background:  #232322
-*.cursorColor: #16afca
+*.foreground:  #dedede
+*.background:  #111111
+*.cursorColor: #ffa460
 !
 ! Black
-*.color0:      #212121
-*.color8:      #424242
+*.color0:      #919191
+*.color8:      #bdbdbd
 !
 ! Red
-*.color1:      #b7141f
-*.color9:      #e83b3f
+*.color1:      #e17373
+*.color9:      #ffa0a0
 !
 ! Green
-*.color2:      #457b24
-*.color10:     #7aba3a
+*.color2:      #94b878
+*.color10:     #bddeab
 !
 ! Yellow
-*.color3:      #f6981e
-*.color11:     #ffea2e
+*.color3:      #ffb97b
+*.color11:     #ffdca0
 !
 ! Blue
-*.color4:      #134eb2
-*.color12:     #54a4f3
+*.color4:      #97bddb
+*.color12:     #b1d7f6
 !
 ! Magenta
-*.color5:      #560088
-*.color13:     #aa4dbc
+*.color5:      #e1c0fa
+*.color13:     #fbdaff
 !
 ! Cyan
-*.color6:      #0e717c
-*.color14:     #26bbd1
+*.color6:      #00988e
+*.color14:     #19b2a7
 !
 ! White
-*.color7:      #efefef
-*.color15:     #d9d9d9
+*.color7:      #dedede
+*.color15:     #ffffff
 !
 ! Bold, Italic, Underline
-*.colorBD:     #b7141f
+*.colorBD:     #ffffff
 !*.colorIT:
 !*.colorUL:
