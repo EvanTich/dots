@@ -5,7 +5,7 @@ alias startx="startx $XINITRC"
 
 # put sudo in front of some commands
 for command in mount umount pacman su shutdown poweroff reboot ; do
-	alias $command="sudo $command"
+    alias $command="sudo $command"
 done; unset command
 
 # fix discord hw acceleration
@@ -18,17 +18,18 @@ alias \
     rm="rm -vI" \
     bc="bc -ql" \
     mkdir="mkdir -pv" \
-    yt="youtube-dl --add-metadata -i" \
-    yta="yt -x -f bestaudio/best" \
+    yt="youtube-dl --add-metadata --ignore-errors --output \"%(title)s.%(ext)s\"" \
+    yta="yt -f \"bestaudio[ext=m4a]\" --embed-thumbnail" \
     ffmpeg="ffmpeg -hide_banner" \
     feh="feh --force-aliasing"
 
 # colors
 alias \
-	ls="ls -hN --color=auto --group-directories-first" \
-	grep="grep --color=auto" \
-	diff="diff --color=auto" \
-	ccat="highlight --out-format=ansi"
+    ls="ls -hN --color=auto --group-directories-first" \
+    grep="grep --color=auto" \
+    diff="diff --color=auto" \
+    ccat="highlight --out-format=ansi" \
+    ip="ip -color=auto"
 
 # abbreviations
 alias \
@@ -37,4 +38,5 @@ alias \
     ll="ls -l" \
     la="ls -la" \
     update="sudo pacman -Syu" \
-    vim="nvim"
+    vim="nvim" \
+    lf="lfub"
