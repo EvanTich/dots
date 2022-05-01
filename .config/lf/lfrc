@@ -22,7 +22,9 @@ cmd mkfile ${{
     $EDITOR $ans
 }}
 
-# basic mappings
+# remove mappings
+map m
+# baisc mappings
 map . set hidden!
 map DD delete
 map <enter> open
