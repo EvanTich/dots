@@ -1,0 +1,12 @@
+#!/bin/sh
+
+chosen=$(cat ~/.local/share/unicode | sed "s/;/\ /g" | dmenu -i -l 30 | sed "s/^.*\ \(.\) .*$/\1/" | tr -d '\n')
+
+[ -z "$chosen" ] && exit
+
+if [ -n "$1" ]; then
+    xdotool type "$chosen"
+else
+    printf "$chosen" | xclip -selection clipboard
+    notify-send  "Unicode" "'$chosen' copied to clipboard" &
+fi
