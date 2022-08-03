@@ -105,6 +105,7 @@ A,vscodium,         "is for coding."
 ,extra/ttf-hack,    "is a nice font."
 ,ttf-fantasque-sans-mono, "is a nice font."
 ,ttf-linux-libertine, "is for free and open fonts."
+A,ttf-ancient-fonts, "for ancient font compatibility."
 #,FUN STUFF,            PROGRAMS THAT ARE JUST FOR FUN
 ,sl,                "sends a steam locomotive across the terminal."
 ,gameconqueror,     "allows you to change many things in memory (i.e. cheat engine)."
