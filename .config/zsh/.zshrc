@@ -7,6 +7,7 @@ RPROMPT='%*'
 setopt auto_cd              # auto cd into directories
 setopt interactive_comments # allows comments in shell
 setopt inc_append_history   # appends to history (+instantly)
+setopt share_history        # shares history between shells
 setopt hist_find_no_dups    # don't list multiple of the same command when using find
 stty stop undef             # disable ctrl-s (terminal freeze)
 
@@ -51,6 +52,7 @@ lfcd () {
 bindkey -s '^o' 'lfcd\n'
 bindkey -s '^a' 'bc -lq\n'
 bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
+bindkey -s '^e' 'vim "$(fzf)"\n'
 
 # other stuff?
 
