@@ -452,7 +452,7 @@ mode "$mode_gaps_outer" {
 exec --no-startup-id i3-msg 'workspace --no-auto-back-and-forth $ws1; append_layout /home/evan/.config/i3/workspace-1.json'
 
 # Execute on startup
-exec --no-startup-id kitty --class gotop --hold gotop
+exec --no-startup-id kitty --class gotop --hold gotop -s
 exec --no-startup-id kitty --class cava --hold cava
 exec --no-startup-id kitty
 exec --no-startup-id kitty
