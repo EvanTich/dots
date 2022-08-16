@@ -87,7 +87,7 @@ vnoremap <C-c> "*y :let @+=@*<CR>
 syntax on                       " enable syntax highlighting
 filetype plugin on              " run filetype plugins
 set number                      " sets the line numbers
-set relativenumber              " relative numbers :)
+" set relativenumber              " relative numbers :)
 set ruler                       " show cursor position
 set numberwidth=4               " number of columns (minus one) taken up by the line number
 " set tabstop=4                   " one tab = 4 spaces
@@ -114,9 +114,16 @@ set clipboard=unnamedplus       " copy/paste between vim and system
 " set autoread                    " auto-read the file if it is changed outside of vim
 set hidden                      " apparently useful
 set nospell                     " get rid of spell checking
+set ignorecase                  " ignore case when searching
+set smartcase                   " do a case sensitive search automatically when there are uppercase letters
 
 set t_Co=256                    " fix colorscheme
 set laststatus=2                " fix vim-airline
+
+set undodir=~/.local/share/nvim/undodir
+set undofile
+
+set viminfo=!,'100,<50,s10,h,n~/.local/share/nvim/viminfo
 
 " future reference if needed
 " if has('nvim')
