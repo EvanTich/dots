@@ -37,6 +37,11 @@ alias \
     cd..="cd ../.." \
     ll="ls -l" \
     la="ls -la" \
-    update="sudo pacman -Syu" \
+    update="pacman -Sy archlinux-keyring && pacman -Su" \
     vim="nvim" \
-    lf="lfub"
+    lf="lfub" \
+    fgrep="find . | grep"
+
+# actual aliases
+alias \
+    webcam="qv4l2"
