@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # TODO: option to override download archive
+# TODO: only download thumbnail
 TEMP_PATH="/tmp"
 
 download() {
@@ -8,16 +9,18 @@ download() {
   thumb="$2"
   tracknum="$3"
 
-  if [[ $thumb -eq 1 ]]; then
-      echo "Downloading thumbnail for $url"
-      curl "$(youtube-dl --get-thumbnail "$url")" --output "$TEMP_PATH/artwork.tmp"
-    convert "$TEMP_PATH/artwork.tmp" -thumbnail '720x720^' -gravity center -extent 720x720 "$TEMP_PATH/artwork.jpg"
-  fi
-
   echo "Downloading $url"
-  file="$(youtube-dl --no-playlist --download-archive "~/Music/archive.txt" --add-metadata --output "%(artist)s - %(title)s.%(ext)s" -f "bestaudio[ext=m4a]" "$url" | awk '/Destination/ {$1=$2=""; print substr($0,3)}')"
+  file="$(youtube-dl --no-playlist --download-archive "~/Music/archive.txt" --add-metadata --output "%(artist)s - %(title)s.%(ext)s" -f "bestaudio[ext=m4a]" -- "$url" | awk '/Destination/ {$1=$2=""; print substr($0,3)}')"
 
-  if [[ $thumb -eq 1 ]]; then
+  if [ -z "$file" ]; then
+    echo "Video already downloaded. Skipping."
+  elif [[ $thumb -eq 1 ]]; then
+    # download thumbnail
+    echo "Downloading thumbnail for $url"
+    curl "$(youtube-dl --get-thumbnail "$url")" --output "$TEMP_PATH/artwork.tmp"
+    convert "$TEMP_PATH/artwork.tmp" -thumbnail '720x720^' -gravity center -extent 720x720 "$TEMP_PATH/artwork.jpg"
+
+    # embed the thumbnail
     echo "Embedding thumbnail in \"$file\""
     if [ -z ${tracknum+x} ]; then
       atomicparsley "$file" --artwork "$TEMP_PATH/artwork.jpg"
