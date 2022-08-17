@@ -5,14 +5,17 @@
 CACHE_FILE="$XDG_DATA_HOME/wallpaper-cache"
 CACHE_SIZE=25
 SIMULATE=0
+FAVS_FILE="$XDG_DATA_HOME/wallpaper-favorites"
 
-# TODO: simulate
+# TODO: fix issue when cache is full and all files in folder are in it
+# TODO: add favorites functionality (not sure how to choose the image, but maybe ueberzug)
 
 clearcache() {
     if [[ $(cat "$CACHE_FILE" | wc -l) -gt $1 ]]; then
         tail -n $1 "$CACHE_FILE" > "$CACHE_FILE.tmp"
         mv "$CACHE_FILE.tmp" "$CACHE_FILE"
     fi
+
 }
 
 setwallpaper() {
@@ -48,7 +51,11 @@ pickwallpaper() {
 }
 
 getwallpaper() {
-    tail -n "$1" "$CACHE_FILE"
+    if [ -z "$1" ]; then
+        tail -n 5 "$CACHE_FILE"
+    else
+        tail -n "$1" "$CACHE_FILE"
+    fi
 }
 
 setup() {
