@@ -23,11 +23,10 @@ download() {
     # embed the thumbnail
     echo "Embedding thumbnail in \"$file\""
     if [ -z ${tracknum+x} ]; then
-      atomicparsley "$file" --artwork "$TEMP_PATH/artwork.jpg"
+      atomicparsley "$file" --overWrite --artwork "$TEMP_PATH/artwork.jpg"
     else
-      atomicparsley "$file" --artwork "$TEMP_PATH/artwork.jpg" --tracknum "$tracknum"
+      atomicparsley "$file" --overWrite --artwork "$TEMP_PATH/artwork.jpg" --tracknum "$tracknum"
     fi
-    mv *-temp-*.m4a "$file"
   fi
 }
 
