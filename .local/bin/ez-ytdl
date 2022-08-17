@@ -17,7 +17,7 @@ download() {
   elif [[ $thumb -eq 1 ]]; then
     # download thumbnail
     echo "Downloading thumbnail for $url"
-    curl "$(youtube-dl --get-thumbnail "$url")" --output "$TEMP_PATH/artwork.tmp"
+    curl "$(youtube-dl --get-thumbnail -- "$url")" --output "$TEMP_PATH/artwork.tmp"
     convert "$TEMP_PATH/artwork.tmp" -thumbnail '720x720^' -gravity center -extent 720x720 "$TEMP_PATH/artwork.jpg"
 
     # embed the thumbnail
