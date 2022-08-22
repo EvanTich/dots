@@ -33,6 +33,7 @@ Plug 'xuyuanp/nerdtree-git-plugin'
 
 " really cool/useful movement
 Plug 'easymotion/vim-easymotion'
+let g:EasyMotion_smartcase=1
 
 " comment manipulation
 Plug 'preservim/nerdcommenter'
@@ -124,6 +125,10 @@ set undodir=~/.local/share/nvim/undodir
 set undofile
 
 set viminfo=!,'100,<50,s10,h,n~/.local/share/nvim/viminfo
+
+" cursorline settings
+hi CursorLine cterm=bold gui=bold ctermbg=None ctermfg=None guibg=None guifg=None
+hi CursorLineNr cterm=bold gui=bold
 
 " future reference if needed
 " if has('nvim')
