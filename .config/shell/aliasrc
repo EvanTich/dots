@@ -40,6 +40,7 @@ alias \
     update="pacman -Sy archlinux-keyring && pacman -Su" \
     vim="nvim" \
     lf="lfub" \
+    ncmpcpp="ncmpcpp-ueberzug" \
     fgrep="find . | grep"
 
 # actual aliases
