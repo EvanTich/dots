@@ -1,8 +1,59 @@
 # ncmpcpp config
-
+# directory/mpd
 ncmpcpp_directory = "~/.config/ncmpcpp"
-lyrics_directory = "~/.local/share/lyrics"
-mpd_music_dir = "~/Music"
+lyrics_directory  = "~/.local/share/lyrics"
+mpd_music_dir     = "~/Music"
+mpd_host          = "localhost"
+mpd_port          = "6600"
 
-mpd_host = localhost
-mpd_port = 6600
+# ueberzug support
+execute_on_song_change = "~/.config/ncmpcpp/ncmpcpp_cover_art.sh"
+
+# general
+external_editor    = "nvim"
+message_delay_time = "1"
+autocenter_mode    = "yes"
+centered_cursor    = "yes"
+ignore_leading_the = "yes"
+mouse_support      = "yes"
+lines_scrolled     = "2"
+allow_for_physical_item_deletion = "no"
+connected_message_on_startup     = "yes"
+
+# colors
+main_window_color = "green"
+color1            = "white"
+color2            = "green"
+
+# visibility
+header_visibility    = "yes"
+statusbar_visibility = "yes"
+titles_visibility    = "no"
+visualizer_look      = "  "
+visualizer_data_source = "/tmp/thisfiledoesnotexist"
+
+# ui appearance
+user_interface        = "classic"
+display_volume_level  = "yes"
+header_text_scrolling = "no"
+now_playing_prefix    = "$b"
+now_playing_suffix    = "$/b"
+
+startup_screen             = "visualizer"
+startup_slave_screen       = "playlist"
+startup_slave_screen_focus = "yes"
+locked_screen_width_part   = "33"
+
+playlist_display_mode            = "columns"
+playlist_disable_highlight_delay = "0"
+playlist_show_remaining_time     = "yes"
+playlist_shorten_total_times     = "yes"
+
+#song_list_format = "$6{%a »$4 %t$/r$R}|{%f}"
+song_list_format = "{$5[%l]$9} {$6%15a$9} {$3%30t$9} $R {$2%n$9} {$5%10b$9}"
+song_columns_list_format = "(9)[blue]{l} (15)[magenta]{a} (25)[green]{t}"
+song_status_format = "{$6%25a »$9} {$3%t$9} {$5<%y>$9}"
+
+#progressbar_look = "─╼ "
+progressbar_look = "=»"
+progressbar_color = "green"
