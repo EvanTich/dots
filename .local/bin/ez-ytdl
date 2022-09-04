@@ -4,21 +4,56 @@
 # TODO: only download thumbnail
 TEMP_PATH="/tmp"
 
+
+retry() {
+  local retries=$1
+  shift
+
+  local counter=0
+  until "$@"; do
+    exit=$?
+    counter=$(($counter + 1))
+    if [ $counter -lt $retries ]; then
+      echo "Retrying command... ($counter/$retries) $exit"
+      sleep 2
+    else
+      echo "Command failed $retries times, skipping."
+      return $exit
+    fi
+  done
+  return 0
+}
+
+download_thumbnail() {
+  url="$1"
+  # download thumbnail
+  echo "Downloading thumbnail for $url"
+  curl "$(youtube-dl --get-thumbnail -- "$url")" --output "$TEMP_PATH/artwork.tmp"
+  convert "$TEMP_PATH/artwork.tmp" -thumbnail '720x720^' -gravity center -extent 720x720 "$TEMP_PATH/artwork.jpg"
+}
+
 download() {
   url="$1"
   thumb="$2"
   tracknum="$3"
 
   echo "Downloading $url"
-  file="$(youtube-dl --no-playlist --download-archive "~/Music/archive.txt" --add-metadata --output "%(artist)s - %(title)s.%(ext)s" -f "bestaudio[ext=m4a]" -- "$url" | awk '/Destination/ {$1=$2=""; print substr($0,3)}')"
+  exit=1
+  until [ $exit -eq 0 ]; do
+    download="$(youtube-dl --no-playlist --download-archive "~/Music/archive.txt" --add-metadata --output "%(artist)s - %(title)s.%(ext)s" -f "bestaudio[ext=m4a]" -- "$url")"
+    exit=$?
+    if [ $exit -ne 0 ]; then
+      echo "Failed to download video, retrying."
+      sleep 2
+    fi
+  done
+  file="$(echo "$download" | grep Destination)"
+  file="${file#*Destination: }"
 
   if [ -z "$file" ]; then
     echo "Video already downloaded. Skipping."
   elif [[ $thumb -eq 1 ]]; then
-    # download thumbnail
-    echo "Downloading thumbnail for $url"
-    curl "$(youtube-dl --get-thumbnail -- "$url")" --output "$TEMP_PATH/artwork.tmp"
-    convert "$TEMP_PATH/artwork.tmp" -thumbnail '720x720^' -gravity center -extent 720x720 "$TEMP_PATH/artwork.jpg"
+    retry 5 download_thumbnail "$url"
 
     # embed the thumbnail
     echo "Embedding thumbnail in \"$file\""
