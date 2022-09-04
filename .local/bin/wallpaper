@@ -3,7 +3,7 @@
 # Sets the wallpaper using feh.
 
 CACHE_FILE="$XDG_DATA_HOME/wallpaper-cache"
-CACHE_SIZE=25
+CACHE_SIZE=100
 SIMULATE=0
 FAVS_FILE="$XDG_DATA_HOME/wallpaper-favorites"
 
