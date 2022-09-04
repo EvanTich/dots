@@ -15,8 +15,9 @@ if test -z "$DBUS_SESSION_BUS_ADDRESS" ; then
     echo "D-Bus per-session daemon address is: $DBUS_SESSION_BUS_ADDRESS"
 fi
 
-xrandr --output DP-4 --primary --mode 1920x1080 --rate 144.00 \
-       --output DP-0 --left-of DP-4 --mode 1920x1080 --rate 144.00
+#xrandr --output DP-2 --primary --mode 1920x1080 --rate 144.00
+xrandr --output DP-2 --primary --mode 1920x1080 --rate 144.00 \
+       --output DP-0 --left-of DP-2 --mode 1920x1080 --rate 144.00
 
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & # auth agent
 wallpaper /data/WALLPAPERS & # wallpaper
@@ -40,3 +41,6 @@ xset s off              # turn screensaver/locking off
 # xset s on               # turn screensaver on
 # xset s 180 180          # dim after 3 minutes, lock after 6
 # xss-lock -n dim-screen -- blurlock &
+
+# other settings
+v4l2-ctl -d /dev/video0 -c brightness=160 --set-fmt-video=width=1920,height=1080
