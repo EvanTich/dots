@@ -51,14 +51,14 @@ bindsym $mod+d exec --no-startup-id rofi -show run
 bindsym $mod+Ctrl+m exec pavucontrol
 
 # applications
-bindsym $mod+F1 exec nemo
-# bindsym $mod+Shift+F1 exec gksu nemo
+bindsym $mod+F1 exec pgrep ncmpcpp && i3-msg '[class="ncmpcpp"] focus' || kitty --class ncmpcpp --hold ncmpcpp
+bindsym $mod+Shift+F1 exec nemo
 bindsym $mod+F2 exec firefox
 bindsym $mod+F3 exec vscodium
 bindsym $mod+F4 exec discord --ignore-gpu-blocklist --disable-features=UseOzonePlatform --enable-features=VaapiVideoDecoder --use-gl=desktop --enable-gpu-rasterization --enable-zero-copy
 bindsym $mod+Shift+F4 exec slack
 bindsym $mod+F5 exec steam
-bindsym $mod+F6 exec kitty newsboat
+bindsym $mod+F6 exec pgrep newsboat && i3-msg '[class="newsboat"] focus' || kitty --class newsboat --hold newsboat
 
 # volume keys
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
@@ -286,6 +286,7 @@ assign [class="slack"] $ws4
 assign [class="Spotify"] $ws4
 assign [class="Steam"] $ws5
 assign [class="Lutris"] $ws5
+assign [class="(?i)minecraft"] $ws5
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
