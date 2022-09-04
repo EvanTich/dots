@@ -7,11 +7,11 @@ fallback_image="$HOME/.config/ncmpcpp/fallback.png"
 padding_top=2
 padding_bottom=1
 padding_right=1
-max_width=33
+max_width=35
 reserved_playlist_cols=30
 reserved_cols_in_percent="false"
 force_square="true"
-square_alignment="top"
+square_alignment="center"
 
 left_aligned="true"
 padding_left=1
@@ -86,7 +86,8 @@ display_cover_image() {
         width "$ueber_width" \
         synchronously_draw "True" \
         scaler "forced_cover" \
-        scaling_position_x "0.5"
+        scaling_position_x "0.5" \
+        scaling_position_y "0.5"
 }
 
 detect_window_resizes() {
