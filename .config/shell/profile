@@ -34,7 +34,7 @@ export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 
 # other program settings
 export SUDO_ASKPASS="$HOME/.local/bin/askpass"
-export LESS=-R # holy less customization!
+export LESS="-R -S" # holy less customization!
 export LESS_TERMCAP_mb="$(printf '%b' '[1;31m')" # ESC[...m
 export LESS_TERMCAP_md="$(printf '%b' '[1;36m')"
 export LESS_TERMCAP_me="$(printf '%b' '[0m')"
@@ -211,4 +211,3 @@ ex=:\
 
 # run startx on tty1 if not already running
 [ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx "$XINITRC"
-
