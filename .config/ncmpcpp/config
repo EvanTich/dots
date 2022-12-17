@@ -46,7 +46,7 @@ locked_screen_width_part   = "33"
 
 playlist_display_mode            = "columns"
 playlist_disable_highlight_delay = "0"
-playlist_show_remaining_time     = "yes"
+playlist_show_remaining_time     = "no"
 playlist_shorten_total_times     = "yes"
 
 #song_list_format = "$6{%a »$4 %t$/r$R}|{%f}"
