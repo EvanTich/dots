@@ -54,7 +54,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'bronson/vim-trailing-whitespace'
 
 " automatically pair delimiters
-Plug 'jiangmiao/auto-pairs'
+" NOTE: fucks with remapping <CR> if enabled
+"Plug 'jiangmiao/auto-pairs'
 
 " icons for nerdtree and others
 Plug 'ryanoasis/vim-devicons'
@@ -76,6 +77,14 @@ let g:vimwiki_list=[{'path': '~/Documents/VimWiki/vimwiki/',
 " help with commands
 Plug 'liuchengxu/vim-which-key'
 nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
+
+" fix coc completion
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+augroup CoC
+    autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+augroup END
 
 call plug#end()
 
