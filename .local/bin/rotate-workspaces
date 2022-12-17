@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# requires jq, make sure to set separator to something not in the workspace name
+
+initial_workspace=$(i3-msg -t get_workspaces | jq '.[]|select(.focused==true).name')
+
+i3-msg -t get_outputs | jq -r '.[]|select(.active==true)|"\(.name)_\(.current_workspace)"' | \
+while IFS=_ read -r name workspace; do
+  i3-msg -q -- workspace --no-auto-back-and-forth "$workspace"
+  i3-msg -q -- move workspace to output right
+done
+i3-msg -q -- workspace --no-auto-back-and-forth $initial_workspace
+
