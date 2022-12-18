@@ -56,6 +56,7 @@ Plug 'bronson/vim-trailing-whitespace'
 " automatically pair delimiters
 " NOTE: fucks with remapping <CR> if enabled
 "Plug 'jiangmiao/auto-pairs'
+"let g:AutoPairsMapCR=0
 
 " icons for nerdtree and others
 Plug 'ryanoasis/vim-devicons'
