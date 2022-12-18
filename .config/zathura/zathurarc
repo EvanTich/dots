@@ -17,6 +17,8 @@ set page-padding 2
 
 # color
 set recolor true
+set recolor-reverse-video true
+set recolor-keephue true
 set default-bg "#111111"
 set default-fg "#dedede"
 set statusbar-bg "#111111"
