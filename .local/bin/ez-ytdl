@@ -1,6 +1,5 @@
 #!/bin/sh
 
-# TODO: option to override download archive
 # TODO: only download thumbnail
 TEMP_PATH="/tmp"
 
@@ -24,40 +23,48 @@ retry() {
   return 0
 }
 
+download_video() {
+  url="$1"
+
+  # download the video
+  if [ $usearchive -eq 1 ]; then
+    download="$(youtube-dl --no-playlist --restrict-filenames --download-archive "~/Music/archive.txt" --add-metadata --output "%(artist)s - %(title)s.%(ext)s" -f "bestaudio[ext=m4a]" -- "$url")"
+  else
+    download="$(youtube-dl --no-playlist --restrict-filenames --add-metadata --output "%(artist)s - %(title)s.%(ext)s" -f "bestaudio[ext=m4a]" -- "$url")"
+  fi
+}
+
 download_thumbnail() {
   url="$1"
-  # download thumbnail
+
+  # download the thumbnail
   echo "Downloading thumbnail for $url"
-  curl "$(youtube-dl --get-thumbnail -- "$url")" --output "$TEMP_PATH/artwork.tmp"
+  curl "$(youtube-dl --no-playlist --get-thumbnail -- "$url")" --output "$TEMP_PATH/artwork.tmp"
   convert "$TEMP_PATH/artwork.tmp" -thumbnail '720x720^' -gravity center -extent 720x720 "$TEMP_PATH/artwork.jpg"
 }
 
 download() {
   url="$1"
-  thumb="$2"
-  tracknum="$3"
+  tracknum="$2"
 
   echo "Downloading $url"
-  exit=1
-  until [ $exit -eq 0 ]; do
-    download="$(youtube-dl --no-playlist --download-archive "~/Music/archive.txt" --add-metadata --output "%(artist)s - %(title)s.%(ext)s" -f "bestaudio[ext=m4a]" -- "$url")"
-    exit=$?
-    if [ $exit -ne 0 ]; then
-      echo "Failed to download video, retrying."
-      sleep 2
-    fi
-  done
+  retry 20 download_video "$url"
+  if [ $? -ne 0 ]; then
+    echo "Failed to download the video..."
+    return
+  fi
+
   file="$(echo "$download" | grep Destination)"
   file="${file#*Destination: }"
 
   if [ -z "$file" ]; then
     echo "Video already downloaded. Skipping."
-  elif [[ $thumb -eq 1 ]]; then
+  elif [ $thumbnail -eq 1 ]; then
     retry 5 download_thumbnail "$url"
 
     # embed the thumbnail
     echo "Embedding thumbnail in \"$file\""
-    if [ -z ${tracknum+x} ]; then
+    if [ $numbering -eq 0 ] && [ -z "${tracknum+x}" ]; then
       atomicparsley "$file" --overWrite --artwork "$TEMP_PATH/artwork.jpg"
     else
       atomicparsley "$file" --overWrite --artwork "$TEMP_PATH/artwork.jpg" --tracknum "$tracknum"
@@ -65,28 +72,33 @@ download() {
   fi
 }
 
+usage() {
+  echo "Usage: ez-ytdl [--thumbnails | --no-thumbnails] [--tracknums | --no-tracknums] [--archive | --no-archive] urls..."
+  exit 1
+}
+
 thumbnail=1
 numbering=0
+usearchive=1
 for arg in "$@"; do
   case "$arg" in
+    "--help") usage ;;
     "--thumbnails") thumbnail=1 ;;
     "--no-thumbnails") thumbnail=0 ;;
     "--tracknums") numbering=1 ;;
     "--no-tracknums") numbering=0 ;;
+    "--archive") usearchive=1 ;;
+    "--no-archive") usearchive=0 ;;
     *"playlist"*)
       touch "$TEMP_PATH/playlist"
       youtube-dl --flat-playlist --skip-download "$arg" --get-id > "$TEMP_PATH/playlist"
       n=1
       while read id; do
-        if [[ $numbering -eq 1 ]]; then
-          download "$id" "$thumbnail" "$n"
-        else
-          download "$id" "$thumbnail"
-        fi
-        n=$((n+1))
+        download "$id" "$n"
+        n=$((n + 1))
       done < "$TEMP_PATH/playlist"
       ;;
-    *) download "$arg" "$thumbnail" ;;
+    *) download "$arg" ;;
   esac
 done
 
