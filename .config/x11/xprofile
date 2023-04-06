@@ -15,12 +15,20 @@ if test -z "$DBUS_SESSION_BUS_ADDRESS" ; then
     echo "D-Bus per-session daemon address is: $DBUS_SESSION_BUS_ADDRESS"
 fi
 
-#xrandr --output DP-2 --primary --mode 1920x1080 --rate 144.00
-xrandr --output DP-2 --primary --mode 1920x1080 --rate 144.00 \
-       --output DP-0 --left-of DP-2 --mode 1920x1080 --rate 144.00
+case $(hostname) in
+    (arch)
+        xrandr --output HDMI-2 --primary --mode 1920x1080 --rate 144.00
+        feh --no-fehbg --bg-max "${XDG_DATA_HOME:-$HOME/.local/share}/default-wallpaper.jpg"
+        ;;
+    (bird)
+        xrandr --output DP-4 --primary --mode 1920x1080 --rate 144.00 \
+               --output DP-0 --left-of DP-4 --mode 1920x1080 --rate 144.00
+        wallpaper /data/WALLPAPERS & # wallpaper
+        ;;
+    (*) echo "Hostname not expected: add the host settings to xprofile" ;;
+esac
 
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & # auth agent
-wallpaper /data/WALLPAPERS & # wallpaper
 xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources & # use xresources
 mpd &                   # music player daemon
 mpDris2 &               # playerctl to mpd interaction
