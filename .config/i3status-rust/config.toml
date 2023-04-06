@@ -1,7 +1,7 @@
 # for i3status-rust
 
 [theme]
-name = "modern"
+theme = "modern"
 [theme.overrides]
 idle_bg = "#111111"
 idle_fg = "#dedede"
@@ -9,20 +9,20 @@ info_bg = "#3b4837"
 info_fg = "#a7c99d"
 
 [icons]
-name = "awesome"
+icons = "awesome6"
 
 #[[block]]
 #block = "focused_window"
-#max_width = 50
-#show_marks = "visible"
+
+[[block]]
+block = "pomodoro"
+notify_cmd = "notify-send '${msg}'"
+blocking_cmd = false
 
 [[block]]
 block = "music"
+format = " $icon {$combo.str(max_w:25, rot_interval:0.75) $play |} "
 # player = "mpd"
-buttons = ["play", "next"]
-dynamic_width = true
-hide_when_empty = true
-max_width = 30
 
 [[block]]
 block = "cpu"
@@ -30,9 +30,7 @@ interval = 1
 
 [[block]]
 block = "memory"
-display_type = "memory"
-format_mem = "{mem_used_percents}"
-format_swap = "{swap_used_percents}"
+format = " $icon $mem_used_percents.eng(w:1) "
 
 [[block]]
 block = "sound"
@@ -40,7 +38,7 @@ block = "sound"
 [[block]]
 block = "time"
 interval = 5
-format = "%a %m-%d %R"
+format = " $icon $timestamp.datetime(f:'%a %m-%d %R')"
 
 # [[block]]
 # block = "battery"
