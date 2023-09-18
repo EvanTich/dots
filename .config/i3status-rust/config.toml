@@ -15,11 +15,6 @@ icons = "awesome6"
 #block = "focused_window"
 
 [[block]]
-block = "pomodoro"
-notify_cmd = "notify-send '${msg}'"
-blocking_cmd = false
-
-[[block]]
 block = "music"
 format = " $icon {$combo.str(max_w:25, rot_interval:0.75) $play |} "
 # player = "mpd"
