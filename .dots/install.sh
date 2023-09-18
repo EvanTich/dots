@@ -51,7 +51,7 @@ already_installed() {
 # install all packages, inspired heavily by larbs
 install() {
     [ -z "$1" ] && nocheck="1"
-    grep -v "^\s*#" pkglist.csv > /tmp/pkglist.csv
+    grep -v "^\s*#" .dots/pkglist.csv > /tmp/pkglist.csv
     local total=$(wc -l < /tmp/pkglist.csv)
     while IFS=, read -r tag program comment; do
         n=$((n+1))

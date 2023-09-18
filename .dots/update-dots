@@ -1,0 +1,3 @@
+#!/bin/sh
+
+rsync -auvh --existing ~/.config ~/.local .
