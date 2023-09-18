@@ -1,1 +1,3 @@
-cache=${XDG_CACHE_HOME}/npm
+cache=/home/evan/.cache/npm
+scripts-prepend-node-path=true
+node_gyp=
