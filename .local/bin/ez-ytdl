@@ -28,9 +28,9 @@ download_video() {
 
   # download the video
   if [ $usearchive -eq 1 ]; then
-    download="$(youtube-dl --no-playlist --restrict-filenames --download-archive "~/Music/archive.txt" --add-metadata --output "%(artist)s - %(title)s.%(ext)s" -f "bestaudio[ext=m4a]" -- "$url")"
+    download="$(yt-dlp --no-playlist --windows-filenames --download-archive "~/Music/archive.txt" --add-metadata --output "%(artist)s - %(title)s.%(ext)s" -f "bestaudio[ext=m4a]" -- "$url")"
   else
-    download="$(youtube-dl --no-playlist --restrict-filenames --add-metadata --output "%(artist)s - %(title)s.%(ext)s" -f "bestaudio[ext=m4a]" -- "$url")"
+    download="$(yt-dlp --no-playlist --windows-filenames --add-metadata --output "%(artist)s - %(title)s.%(ext)s" -f "bestaudio[ext=m4a]" -- "$url")"
   fi
 }
 
@@ -39,7 +39,7 @@ download_thumbnail() {
 
   # download the thumbnail
   echo "Downloading thumbnail for $url"
-  curl "$(youtube-dl --no-playlist --get-thumbnail -- "$url")" --output "$TEMP_PATH/artwork.tmp"
+  curl "$(yt-dlp --no-playlist --get-thumbnail -- "$url")" --output "$TEMP_PATH/artwork.tmp"
   convert "$TEMP_PATH/artwork.tmp" -thumbnail '720x720^' -gravity center -extent 720x720 "$TEMP_PATH/artwork.jpg"
 }
 
@@ -59,6 +59,7 @@ download() {
 
   if [ -z "$file" ]; then
     echo "Video already downloaded. Skipping."
+    return
   elif [ $thumbnail -eq 1 ]; then
     retry 5 download_thumbnail "$url"
 
@@ -91,7 +92,7 @@ for arg in "$@"; do
     "--no-archive") usearchive=0 ;;
     *"playlist"*)
       touch "$TEMP_PATH/playlist"
-      youtube-dl --flat-playlist --skip-download "$arg" --get-id > "$TEMP_PATH/playlist"
+      yt-dlp --flat-playlist --skip-download "$arg" --get-id > "$TEMP_PATH/playlist"
       n=1
       while read id; do
         download "$id" "$n"
