@@ -34,6 +34,9 @@ block = "sound"
 block = "time"
 interval = 5
 format = " $icon $timestamp.datetime(f:'%a %m-%d %R')"
+[[block.click]]
+button = "left"
+cmd = "rofi-calendar"
 
 # [[block]]
 # block = "battery"
