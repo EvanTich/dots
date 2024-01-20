@@ -286,6 +286,7 @@ assign [class="gotop"] $ws1
 assign [title="ncmpcpp"] $ws1
 assign [class="firefox"] $ws2
 assign [class="VSCodium"] $ws3
+assign [class="codium"] $ws3
 assign [class="obsidian"] $ws3
 assign [class="discord"] $ws4
 assign [class="slack"] $ws4
