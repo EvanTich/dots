@@ -16,3 +16,4 @@ inode/directory=file.desktop
 [Added Associations]
 image/jpeg=feh.desktop;
 image/png=feh.desktop;
+application/rss+xml=nvim.desktop;
