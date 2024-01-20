@@ -1,0 +1,4 @@
+#!/bin/sh
+# moved because now I can run it from rofi
+
+v4l2-ctl -d /dev/video0 -c brightness=160 --set-fmt-video=width=1920,height=1080

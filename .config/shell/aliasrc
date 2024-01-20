@@ -45,4 +45,5 @@ alias \
 
 # actual aliases
 alias \
-    webcam="qv4l2"
+    webcam="qv4l2" \
+    sizeof="du -sh"
