@@ -6,6 +6,9 @@ set ifs "\n"
 set shellopts '-eu'
 set scrolloff 5
 
+# kill the lf server when the last lf instance closes
+set autoquit true
+
 set cleaner '~/.config/lf/cleaner'
 set previewer '~/.config/lf/scope'
 
