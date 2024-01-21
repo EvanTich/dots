@@ -2,12 +2,13 @@
 
 # Sets the wallpaper using feh.
 
-CACHE_FILE="$XDG_DATA_HOME/wallpaper-cache"
-CACHE_SIZE=100
-SIMULATE=0
-FAVS_FILE="$XDG_DATA_HOME/wallpaper-favorites"
+CACHE_FILE="${CACHE_FILE:-$XDG_DATA_HOME/wallpaper-cache}"
+CACHE_SIZE="${CACHE_SIZE:-250}"
+SIMULATE="${SIMULATE:-0}"
+FAVS_FILE="${FAVS_FILE:-$XDG_DATA_HOME/wallpaper-favorites}"
 
 # TODO: fix issue when cache is full and all files in folder are in it
+# TODO: fix potential issue when the cache size is a large percent of the available wallpapers
 # TODO: add favorites functionality (not sure how to choose the image, but maybe ueberzug)
 
 clearcache() {
@@ -15,7 +16,6 @@ clearcache() {
         tail -n $1 "$CACHE_FILE" > "$CACHE_FILE.tmp"
         mv "$CACHE_FILE.tmp" "$CACHE_FILE"
     fi
-
 }
 
 setwallpaper() {
@@ -122,8 +122,6 @@ while (( "$#" )); do
     esac
     shift
 done
-
-# echo "$CACHE_FILE $CACHE_SIZE $SIMULATE"
 
 # if number of arguments is 0
 if [[ $# -eq 0 ]]; then
