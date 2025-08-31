@@ -21,7 +21,7 @@ get_current_date() {
 print_month() {
   mnt=$1
   yr=$2
-  cal --color=always --monday $mnt $yr \
+  cal --color=always $mnt $yr \
     | sed -e 's/\x1b\[[7;]*m/\<b\>\<u\>/g' \
           -e 's/\x1b\[[0;]*m/\<\/u\>\<\/b\>/g' \
           -e '/^ *$/d' \
