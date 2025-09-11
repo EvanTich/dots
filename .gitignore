@@ -1,9 +1,11 @@
 # ignore everything
 *
 # except...
-!*/
+!.local
 !.local/**/*
+!.config
 !.config/**/*
+!.dots
 !.dots/*
 !.gitignore
 !.gitattributes

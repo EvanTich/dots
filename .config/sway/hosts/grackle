@@ -1,0 +1,3 @@
+set $primary_output 'BNQ BenQ XL2420TE D6D04947SL0'
+
+output $primary_output mode 1920x1080@144Hz bg ~/.local/share/default-wallpaper.jpg fill

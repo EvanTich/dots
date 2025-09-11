@@ -1,0 +1,488 @@
+###########################
+#####     GENERAL     #####
+###########################
+
+include /etc/sway/config.d/*
+
+# Set mod key (Mod1=<Alt>, Mod4=<Super>)
+set $mod Mod4
+
+# set default desktop layout (default is tiling)
+# workspace_layout tabbed <stacking|tabbed>
+
+# Configure border style <normal|1pixel|pixel xx|none|pixel>
+default_border pixel 1
+default_floating_border pixel 1
+hide_edge_borders none
+
+# Font for window titles. Will also be used by the bar unless specified otherwise.
+font pango:FantasqueSansMono Nerd Font Mono 14px
+
+# Use Mouse+$mod to drag floating windows
+floating_modifier $mod
+
+# Window focus
+focus_follows_mouse no
+
+###############################
+#####     KEYBINDINGS     #####
+###############################
+
+# change borders
+bindsym $mod+u border none
+bindsym $mod+y border pixel 1
+bindsym $mod+n border normal
+
+# start a terminal
+bindsym $mod+Return exec kitty
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+set $menu wmenu-run
+
+# program launcher
+bindsym $mod+d exec --no-startup-id $menu
+
+# audio
+bindsym $mod+Ctrl+m exec pavucontrol
+
+# applications
+bindsym $mod+F1 exec pgrep ncmpcpp && swaymsg '[title="ncmpcpp"] focus' || kitty --class ncmpcpp --hold ncmpcpp
+bindsym $mod+Shift+F1 exec nemo
+bindsym $mod+F2 exec firefox
+bindsym $mod+F3 exec codium --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations
+bindsym $mod+Shift+F3 exec obsidian --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations
+bindsym $mod+F4 exec discord --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --ignore-gpu-blocklist --disable-features=UseOzonePlatform --enable-features=VaapiVideoDecoder --use-gl=desktop --enable-gpu-rasterization --enable-zero-copy
+# bindsym $mod+Shift+F4 exec slack
+bindsym $mod+F5 exec steam
+bindsym $mod+F6 exec qbittorrent
+bindsym $mod+F7 exec pgrep newsboat && swaymsg '[title="newsboat"] focus' || kitty --class newsboat --hold newsboat
+
+# volume keys
+bindsym XF86AudioRaiseVolume exec --no-startup-id wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 10%+
+bindsym XF86AudioLowerVolume exec --no-startup-id wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%-
+bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ +1%
+bindsym Shift+XF86AudioLowerVolume exec --no-startup-id wpctl set-volume @DEFAULT_AUDIO_SINK@ -1%
+bindsym XF86AudioMute exec --no-startup-id wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+# TODO: no way to do this in wpctl except for parsing through complex output
+# bindsym Shift+XF86AudioMute exec --no-startup-id pactl list short sinks | cut -f1 | xargs -n1 -I {} -- pactl set-sink-volume {} 0%
+
+# brightness keys
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set -10
+bindsym Shift+XF86MonBrightnessUp exec --no-startup-id brightnessctl set +2
+bindsym Shift+XF86MonBrightnessDown exec --no-startup-id brightnessctl set -2
+
+# media keys
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioPause exec --no-startup-id playerctl play-pause
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+
+# screenshotting
+bindsym Print exec --no-startup-id screenshot fullscreen-copy
+bindsym $mod+Print exec --no-startup-id screenshot window-copy
+bindsym $mod+Shift+Print exec --no-startup-id screenshot area
+bindsym $mod+Shift+s exec --no-startup-id screenshot area-copy
+
+# change focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split orientation
+bindsym $mod+h split h
+bindsym $mod+v split v
+bindsym $mod+q split toggle
+
+# toggle fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# toggle sticky
+bindsym $mod+Ctrl+s sticky toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+minus scratchpad show
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart inplace (preserves your layout/session)
+bindsym $mod+Shift+r restart
+
+# Lock screen
+# bindsym $mod+9 exec --no-startup-id blurlock
+
+# exit sway (logs you out of your X session)
+bindsym $mod+Shift+e exec --no-startup-id prompt 'Do you really want to exit?' 'swaymsg exit'
+
+#################################
+#####     BINDING MODES     #####
+#################################
+
+# Set shut down, restart and locking features
+set $mode_system (l)ock, (e)xit, (s)uspend, (r)eboot, (Shift+s)hutdown
+bindsym $mod+0 mode "$mode_system"
+mode "$mode_system" {
+    bindsym l exec --no-startup-id blurlock, mode "default"
+    bindsym e exec --no-startup-id swaymsg exit, mode "default"
+    bindsym s exec --no-startup-id blurlock && systemctl suspend, mode "default"
+    #bindsym h exec --no-startup-id blurlock && systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff, mode "default"
+
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# Resize window (you can also use the mouse for that)
+bindsym $mod+r mode "resize"
+mode "resize" {
+    # left  -> shrink the window’s width.
+    # right -> grow   the window’s width.
+    # up    -> shrink the window’s height.
+    # down  -> grow   the window’s height.
+    bindsym j resize shrink width 5 px or 5 ppt
+    bindsym k resize grow height 5 px or 5 ppt
+    bindsym l resize shrink height 5 px or 5 ppt
+    bindsym semicolon resize grow width 5 px or 5 ppt
+
+    # and arrow keys
+    bindsym Left resize shrink width 5 px or 5 ppt
+    bindsym Down resize grow height 5 px or 5 ppt
+    bindsym Up resize shrink height 5 px or 5 ppt
+    bindsym Right resize grow width 5 px or 5 ppt
+
+    # double shrinking/growing when holding shift
+    bindsym Shift+j resize shrink width 10 px or 10 ppt
+    bindsym Shift+k resize grow height 10 px or 10 ppt
+    bindsym Shift+l resize shrink height 10 px or 10 ppt
+    bindsym Shift+semicolon resize grow width 10 px or 10 ppt
+
+    # and arrow keys
+    bindsym Shift+Left resize shrink width 10 px or 10 ppt
+    bindsym Shift+Down resize grow height 10 px or 10 ppt
+    bindsym Shift+Up resize shrink height 10 px or 10 ppt
+    bindsym Shift+Right resize grow width 10 px or 10 ppt
+
+    # exit resize mode: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+##############################
+#####     WORKSPACES     #####
+##############################
+
+# Workspace names
+set $ws1 "1:📌"
+set $ws2 "2:📂"
+set $ws3 "3:✨"
+set $ws4 "4:🗨️"
+set $ws5 "5:🎮"
+set $ws6 "6:📂"
+set $ws7 "7:📂"
+set $ws8 "8:📌"
+
+# Switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+
+# Move focused container to workspace
+bindsym $mod+Ctrl+1 move container to workspace $ws1
+bindsym $mod+Ctrl+2 move container to workspace $ws2
+bindsym $mod+Ctrl+3 move container to workspace $ws3
+bindsym $mod+Ctrl+4 move container to workspace $ws4
+bindsym $mod+Ctrl+5 move container to workspace $ws5
+bindsym $mod+Ctrl+6 move container to workspace $ws6
+bindsym $mod+Ctrl+7 move container to workspace $ws7
+bindsym $mod+Ctrl+8 move container to workspace $ws8
+
+# Move to workspace with focused container
+bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2; workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3; workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4; workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5; workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6; workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
+
+# Navigate workspaces next / previous
+bindsym $mod+Ctrl+Right workspace next
+bindsym $mod+Ctrl+Left workspace prev
+
+# Workspace back and forth (with/without active container)
+workspace_auto_back_and_forth yes
+bindsym $mod+b workspace back_and_forth
+bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
+
+# move focused workspace (left/right)
+bindsym $mod+Ctrl+Shift+j move workspace to output left
+bindsym $mod+Ctrl+Shift+semicolon move workspace to output right
+bindsym $mod+Ctrl+Shift+Left move workspace to output left
+bindsym $mod+Ctrl+Shift+Right move workspace to output right
+
+# rotate workspaces between screens
+bindsym $mod+x exec /home/evan/.local/bin/rotate-workspaces
+
+#########################
+#####     RULES     #####
+#########################
+
+# Open programs on certain workspaces
+# NOTE: doing app_id for general wayland and class for x11 applications
+assign [title="lf"] $ws1
+assign [title="gotop"] $ws1
+assign [title="ncmpcpp"] $ws1
+assign [app_id="firefox"] $ws2
+assign [app_id="codium"] $ws3
+assign [app_id="obsidian"] $ws3
+assign [class="obsidian"] $ws3
+assign [app_id="discord"] $ws4
+assign [class="discord"] $ws4
+# assign [app_id="slack"] $ws4
+# assign [app_id="Spotify"] $ws4
+assign [class="(?i)steam"] $ws5
+assign [app_id="Lutris"] $ws5
+assign [app_id="(?i)minecraft"] $ws5
+assign [app_id="qbittorrent"] $ws6
+
+# switch to workspace with urgent window automatically
+for_window [urgent=latest] focus
+
+for_window [instance="dropdown"] floating enable
+# for_window [instance="dropdown"] resize set 1200 600
+# for_window [instance="dropdown"] move position center
+# for_window [instance="dropdown"] move scratchpad
+# for_window [instance="dropdown"] sticky enable
+
+for_window [app_id=".*pavucontrol"] floating enable
+for_window [app_id="blueman-manager"] floating enable
+
+# for_window [class="zoom"] floating enable # manually unfloat windows when needed
+
+for_window [app_id="firefox" title="^Library$"] floating enable # bookmark manager window
+
+# fix steam up
+for_window [class="(?i)steam"] floating enable
+for_window [class="(?i)steam" title="^Steam$"] floating disable
+for_window [title="^Steam Keyboard$"] floating enable
+
+# anything fullscreen should probably inhibit idling
+for_window [class=".*"] inhibit_idle fullscreen
+for_window [app_id=".*"] inhibit_idle fullscreen
+
+# TODO
+
+###########################
+#####     THEMING     #####
+###########################
+
+include "hosts/$(cat /etc/hostname)"
+
+set $background  #111111
+set $foreground  #dedede
+set $black       #919191
+set $red         #e17373
+set $green       #94b978
+set $yellow      #ffb97b
+set $blue        #96bddb
+set $magenta     #e1c0fa
+set $cyan        #00988e
+set $white       #dedede
+set $black_alt   #bdbdbd
+set $red_alt     #ffa0a0
+set $green_alt   #bddeab
+set $yellow_alt  #ffdba0
+set $blue_alt    #b1d7f6
+set $magenta_alt #fbdaff
+set $cyan_alt    #19b2a7
+set $white_alt   #ffffff
+
+# Theme colors
+# class                 border  backgr. text    indic.   child_border
+client.focused          #556064 #556064 #80FFF9 #FDF6E3
+client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
+client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
+client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
+client.placeholder      #000000 #0c0c0c #ffffff #000000
+client.background               #2B2C2B
+
+###########################
+#####     TASKBAR     #####
+###########################
+
+# hide/unhide status bar
+bindsym $mod+m bar mode toggle
+
+bar {
+    swaybar_command swaybar
+    status_command i3status-rs ~/.config/i3status-rust/config.toml
+    #font pango:FantasqueSansMono Nerd Font Mono 13px
+    position top
+
+    tray_output $primary_output
+
+    bindsym button4 nop
+    bindsym button5 nop
+    strip_workspace_numbers no
+
+    colors {
+        background $background
+        statusline $foreground
+        separator  $black
+
+#                          border       background  text
+        focused_workspace  $green_alt   $green      $background
+        active_workspace   $black       $background $white
+        inactive_workspace $black       $background $yellow
+        binding_mode       $red_alt     $red        $foreground
+        urgent_workspace   $red_alt     $red        $foreground
+    }
+}
+
+##########################
+#####      GAPS      #####
+##########################
+
+# Set inner/outer gaps
+gaps inner 6
+gaps outer -2
+
+# Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
+# gaps inner|outer current|all set|plus|minus <px>
+# gaps inner all set 10
+# gaps outer all plus 5
+
+# Smart gaps (gaps used if only more than one container on the workspace)
+smart_gaps on
+
+# Smart borders (draw borders around container only if it is not the only container on this workspace)
+# on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
+smart_borders no_gaps
+
+# Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+    bindsym o      mode "$mode_gaps_outer"
+    bindsym i      mode "$mode_gaps_inner"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_inner" {
+    bindsym plus  gaps inner current plus 5
+    bindsym minus gaps inner current minus 5
+    bindsym 0     gaps inner current set 0
+
+    bindsym Shift+plus  gaps inner all plus 5
+    bindsym Shift+minus gaps inner all minus 5
+    bindsym Shift+0     gaps inner all set 0
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_outer" {
+    bindsym plus  gaps outer current plus 5
+    bindsym minus gaps outer current minus 5
+    bindsym 0     gaps outer current set 0
+
+    bindsym Shift+plus  gaps outer all plus 5
+    bindsym Shift+minus gaps outer all minus 5
+    bindsym Shift+0     gaps outer all set 0
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+###########################
+#####     STARTUP     #####
+###########################
+
+input type:keyboard {
+    repeat_delay 300
+    repeat_rate 50
+}
+
+input type:pointer {
+    natural_scroll disable
+    dwt disable
+    accel_profile flat
+    scroll_factor 1
+    middle_emulation enabled
+}
+
+# auth agent
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+# music manager
+exec mpd
+# playerctl <-> mpd
+exec mpDris2
+# notification manager
+exec dunst
+# ease on the eyes
+exec gammastep
+# lets playerctl focus on the last active source
+exec playerctld daemon
+
+# audio manager
+exec pasystray
+# network manager
+# exec nm-applet
+# bluetooth manager
+exec blueman-applet
+
+exec swayidle -w \
+    timeout 600 'swaymsg "output * power off"' \
+    resume 'swaymsg "output * power on"'

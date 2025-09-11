@@ -2,7 +2,7 @@
 # Aliases for general shortcuts for quickly doing everyday things.
 
 alias \
-    dots="vscodium ~/dots" \
+    dots="codium ~/dots" \
     todo="vim ~/Desktop/notes/TODO.md" \
     e="cd /mnt/e; ll" \
     d="cd /mnt/d; ll" \

@@ -19,6 +19,7 @@
     - [x] mpd conf
     - [x] userChrome.css (smaller tabs, square-ish, more compact)
     - [ ] actual fonts.conf
+    - [ ] gtk-4.0, gtk-5.0
 - [x] remove .vim and only use nvim?
 - [x] show shortcuts in README
 - [x] mimeapps.list in .config, .desktop entries in .local/share/applications
@@ -38,9 +39,15 @@
 - [ ] automate firefox config installation
 - [ ] fix .desktop files in /usr/share/applications (terminal programs don't run)
 - [ ] graphical applications in another pkglist
+- [x] actually add kitty jellybeans theme instead of just referencing it
+- [x] remove references to dmenu and use rofi
+- [ ] split up sway config
+- [ ] explain how to install greetd + greetd-regreet + configs
+    - include /etc/greetd/sway-config
 
 ## Check out these things
-- [ ] Joplin (https://github.com/laurent22/joplin)
+- [x] ~~Joplin (https://github.com/laurent22/joplin)~~
+    - obsidian is better
 
 ## STYLING
 - [x] find nice color theme for all programs

@@ -10,10 +10,10 @@
 
 getmount() {
 	[ -z "$chosen" ] && exit 1
-	mp="$(find $1 2>/dev/null | dmenu -i -p "Type in mount point.")" || exit 1
+	mp="$(find $1 2>/dev/null | rofi -dmenu -i -p "Type in mount point.")" || exit 1
 	test -z "$mp" && exit 1
 	if [ ! -d "$mp" ]; then
-		mkdiryn=$(printf "No\\nYes" | dmenu -i -p "$mp does not exist. Create it?") || exit 1
+		mkdiryn=$(printf "No\\nYes" | rofi -dmenu -i -p "$mp does not exist. Create it?") || exit 1
 		[ "$mkdiryn" = "Yes" ] && (mkdir -p "$mp" || sudo -A mkdir -p "$mp")
 	fi
 }
@@ -21,7 +21,7 @@ getmount() {
 mountusb() {
 	drives="$(lsblk -rpo "name,type,size,mountpoint" | grep 'part\|rom' | awk '$4==""{printf "%s (%s)\n",$1,$3}')"
 	[ -z "$drives" ] && echo "No USB drive detected" && exit
-	chosen="$(echo "$drives" | dmenu -i -p "Mount which drive?")" || exit 1
+	chosen="$(echo "$drives" | rofi -dmenu -i -p "Mount which drive?")" || exit 1
 	chosen="$(echo "$chosen" | awk '{print $1}')"
 	sudo -A mount "$chosen" 2>/dev/null && notify-send "💻 USB mounting" "$chosen mounted." && exit 0
 	alreadymounted=$(lsblk -nrpo "name,type,mountpoint" | awk '$3!~/\/boot|\/home$|SWAP/&&length($3)>1{printf "-not ( -path *%s -prune ) ",$3}')
@@ -38,14 +38,14 @@ mountusb() {
 unmountusb() {
 	drives="$(lsblk -nrpo "name,type,size,mountpoint,label" | awk -F':' '{gsub(/ /,":")}$4!~/\/boot|\/efi|\/home$|SWAP/&&length($4)>1{printf "%s (%s) %s\n",$4,$3,$5}')"
 	[ -z "$drives" ] && echo "No drives to unmount." && exit
-	chosen="$(echo "$drives" | dmenu -i -p "Unmount which drive?")" || exit 1
+	chosen="$(echo "$drives" | rofi -dmenu -i -p "Unmount which drive?")" || exit 1
 	chosen="$(echo "$chosen" | awk '{print $1}')"
 	[ -z "$chosen" ] && exit
 	sudo -A umount "$chosen" && notify-send "💻 USB unmounting" "$chosen unmounted."
 }
 
 asktype() {
-	choice="$(printf "mount\\nunmount" | dmenu -i -p "Mount or unmount?")" || exit 1
+	choice="$(printf "mount\\nunmount" | rofi -dmenu -i -p "Mount or unmount?")" || exit 1
 	case $choice in
 		mount) mountusb ;;
 		unmount) unmountusb ;;

@@ -2,24 +2,24 @@
 
 # Screenshots the screen based on argument input or dmenu
 # Arguments can be: fullscreen, window, or area.
-# You can add '-copy' after each if you want to copy the image 
+# You can add '-copy' after each if you want to copy the image
 # to the clipboard instead of saving the screenshot to a file.
 choice="$1"
 if [ -z "$1" ]; then
-    choice="$(printf "fullscreen\\nwindow\\narea\\nfullscreen (copy)\\nwindow (copy)\\narea (copy)" | dmenu -l 6 -i -p "Screenshot which area?")"
+    choice="$(printf "fullscreen\\nwindow\\narea\\nfullscreen (copy)\\nwindow (copy)\\narea (copy)" | rofi -dmenu -l 6 -i -p "Screenshot which area?")"
 fi
+
+file="${2:-"/home/$USER/Pictures/screenshot-$(date +'%F %T').png"}"
 
 case "$choice" in
     "fullscreen")
-        maim "/home/$USER/Pictures/screenshot-$(date +'%F %T').png" ;;
+        grimshot save screen "$file" >/dev/null ;;
     "fullscreen-copy"|"fullscreen (copy)")
-        maim | xclip -selection clipboard -t image/png ;;
-    "window")
-        maim -i $(xdotool getactivewindow) "/home/$USER/Pictures/screenshot-$(date +'%F %T').png" ;;
-    "window-copy"|"window (copy)")
-        maim -i $(xdotool getactivewindow) | xclip -selection clipboard -t image/png ;;
+        grimshot --notify copy screen ;;
+    "window") ;&
     "area")
-        maim -c .369,.506,.675 -b 2 -s "/home/$USER/Pictures/screenshot-$(date +'%F %T').png" ;;
+        grimshot save anything "$file" >/dev/null ;;
+    "window-copy"|"window (copy)") ;&
     "area-copy"|"area (copy)")
-        maim -c .369,.506,.675 -b 2 -u -s | xclip -selection clipboard -t image/png ;;
+        grimshot --notify copy anything ;;
 esac

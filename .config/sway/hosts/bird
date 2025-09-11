@@ -1,0 +1,6 @@
+set $primary_output 'DP-2'
+set $secondary_output 'DP-0'
+
+output $primary_output mode 1920x1080@144Hz
+output $secondary_output mode 1920x1080@144Hz
+exec_always wallpaper /data/WALLPAPERS
