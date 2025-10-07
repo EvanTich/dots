@@ -25,7 +25,7 @@ interval = 1
 
 [[block]]
 block = "memory"
-format = " $icon $mem_used_percents.eng(w:1) "
+format = " $icon  $mem_used_percents.eng(w:1) "
 
 [[block]]
 block = "sound"
