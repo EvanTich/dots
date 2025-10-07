@@ -33,7 +33,7 @@
 - [x] ~~`status-playerctl` in status bar~~ now using i3status-rs
 - [ ] change the bell in the timer
 - [ ] more apps in mimeapps.list
-- [ ] latex support + editor
+- [x] latex support + editor
 - [ ] dmenu file opener
     - given a directory list all files, open one of them using vim
 - [ ] automate firefox config installation
