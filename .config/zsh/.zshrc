@@ -1,5 +1,10 @@
 # my config :)
 
+# history
+HISTFILE=~/.cache/zsh/history
+HISTSIZE=10000
+SAVEHIST=10000
+
 # color, prompt, and options
 autoload -Uz colors && colors
 PROMPT='%B%F{gray}[%F{green}%n %F{gray}%~%F{gray}]%f$%b '
@@ -11,14 +16,9 @@ setopt share_history        # shares history between shells
 setopt hist_find_no_dups    # don't list multiple of the same command when using find
 stty stop undef             # disable ctrl-s (terminal freeze)
 
-# history
-HISTFILE=~/.cache/zsh/history
-HISTSIZE=10000
-SAVEHIST=10000
-
 # load shortcuts and aliases
-source "$XDG_CONFIG_HOME/shell/shortcutrc"
-source "$XDG_CONFIG_HOME/shell/aliasrc"
+source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc"
+source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
 
 # vi mode
 bindkey -v
