@@ -16,7 +16,7 @@ default_floating_border pixel 1
 hide_edge_borders none
 
 # Font for window titles. Will also be used by the bar unless specified otherwise.
-font pango:FantasqueSansMono Nerd Font Mono 14px
+font pango:FantasqueSansM Nerd Font Regular 14px
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
