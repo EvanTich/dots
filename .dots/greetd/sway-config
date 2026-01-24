@@ -1,0 +1,23 @@
+exec "regreet; swaymsg exit"
+
+# just in case binding
+bindsym Mod4+Shift+e exec swaynag \
+    -t warning \
+    -m 'What do you want to do?' \
+    -b 'Poweroff' 'systemctl poweroff' \
+    -b 'Reboot' 'systemctl reboot'
+
+# taken from my usual config
+set $mode_system (s)uspend, (r)eboot, (Shift+s)hutdown
+bindsym Mod4+0 mode "$mode_system"
+mode "$mode_system" {
+    bindsym s exec --no-startup-id systemctl suspend, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff, mode "default"
+
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+include /etc/sway/config.d/*

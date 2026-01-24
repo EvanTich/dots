@@ -53,6 +53,9 @@ move_dirs() {
 
     # link ncmpcpp-ueberzug
     ln -s ~/.config/ncmpcpp/ncmpcpp-ueberzug ~/.local/bin/
+
+    # TODO: make automatic
+    echo "move files in .dots/greetd to /etc/greetd and start greetd.service"
 }
 
 # vim stuff

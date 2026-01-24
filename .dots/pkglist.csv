@@ -33,6 +33,8 @@
 ,polkit-gnome,      "provides a way for non-privileged processes to talk to privileged ones."
 ,gnome-keyring,     "serves as the system keyring."
 ,wl-clipboard,      "helps with the clipboard."
+#,greetd,            "is a greeter program."
+#,greetd-regreet,    "is a GUI greeter."
 #,TOOLS,                PROGRAMS THAT ARE TOOLS - CLEAR INPUT TO CLEAR OUTPUT
 ,ffmpeg,            "can record and splice video and audio on the command line."
 ,imagemagick,       "has useful image-based utilties."
