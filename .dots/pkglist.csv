@@ -35,6 +35,9 @@
 ,wl-clipboard,      "helps with the clipboard."
 #,greetd,            "is a greeter program."
 #,greetd-regreet,    "is a GUI greeter."
+,xdg-desktop-portal, "needed for accessing system resources from an application sandbox."
+,xdg-desktop-portal-gtk, "is a backend for xdg-desktop-portal."
+,xdg-desktop-portal-wlr, "is a backend for xdg-desktop-portal."
 #,TOOLS,                PROGRAMS THAT ARE TOOLS - CLEAR INPUT TO CLEAR OUTPUT
 ,ffmpeg,            "can record and splice video and audio on the command line."
 ,imagemagick,       "has useful image-based utilties."
@@ -90,6 +93,7 @@ A,mpdris2,          "allows playerctl to control mpd."
 ,htop,              "is a process viewer."
 ,bottom,            "is an process/activity monitor."
 ,v4l-utils,         "for controlling webcams."
+,qt6-5compat,       "fixes some issues with v4l-utils not working."
 #,DEV SOFTWARE,         PROGRAMS THAT ARE FOR SOFTWARE DEVELOPMENT
 A,vscodium,         "is for coding."
 ,nodejs,            "is for Node.js development."
