@@ -1,0 +1,25 @@
+{
+    "chat.agent.enabled": false,
+    "chat.disableAIFeatures": true,
+    "explorer.confirmDelete": false,
+    "redhat.telemetry.enabled": false,
+    "editor.minimap.enabled": false,
+    "editor.renderWhitespace": "selection",
+    "editor.trimWhitespaceOnDelete": true,
+    "editor.rulers": [
+        { "column": 80, "color": "#ff990033" },
+        { "column": 120, "color": "#f50a0a33"}
+    ],
+    "terminal.integrated.stickyScroll.enabled": false,
+    "terminal.integrated.scrollback": 5000,
+    "extensions.autoUpdate": "off",
+    "java.help.showReleaseNotes": false,
+    "java.maven.downloadSources": true,
+    "java.autobuild.enabled": false,
+    "java.editor.reloadChangedSources": "auto",
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.codeGeneration.generateComments": true,
+    "java.codeGeneration.useBlocks": true,
+    "java.inlayHints.variableTypes.enabled": true,
+    "java.debug.settings.vmArgs": "--module-path ~/.m2/repository/org/openjfx/javafx-controls/25.0.3/javafx-controls-25.0.3.jar --add-modules=javafx.controls --enable-native-access=javafx.graphics"
+}
