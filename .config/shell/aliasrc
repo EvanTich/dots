@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# startx with custom xinit if EVER needed
+#alias startx="startx $XINITRC"
+
 # put sudo in front of some commands
 for command in mount umount pacman su shutdown poweroff reboot ; do
     alias $command="sudo $command"
@@ -17,8 +20,6 @@ alias \
     rm="rm -vI" \
     bc="bc -ql" \
     mkdir="mkdir -pv" \
-    yt="yt-dlp --add-metadata --ignore-errors --windows-filenames --output \"%(title)s.%(ext)s\"" \
-    yta="yt -f \"bestaudio[ext=m4a]\" --embed-thumbnail" \
     ffmpeg="ffmpeg -hide_banner"
 
 # colors
@@ -38,10 +39,12 @@ alias \
     update="pacman -Sy archlinux-keyring && pacman -Su" \
     vim="nvim" \
     lf="lfub" \
-    ncmpcpp="ncmpcpp-ueberzug" \
     fgrep="find . | grep"
 
 # actual aliases
 alias \
     webcam="qv4l2" \
     sizeof="du -sh"
+
+alias gemma4="llama-server -hf unsloth/gemma-4-12b-it-GGUF:UD-Q4_K_XL"
+alias gemma4img="llama-server -hf unsloth/gemma-4-12b-it-GGUF:UD-Q4_K_XL --image-min-tokens 1120 --image-max-tokens 1120 --ubatch-size 2048 --batch-size 2048"
