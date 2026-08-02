@@ -27,7 +27,7 @@ cmd mkfile ${{
 
 # remove mappings
 map m
-# baisc mappings
+# basic mappings
 map . set hidden!
 map DD delete
 map <enter> open
