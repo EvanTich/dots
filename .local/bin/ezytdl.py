@@ -25,7 +25,11 @@ MUSIC_OPTIONS = {
     'continuedl': True,
     'postprocessors': [{
         'key': 'FFmpegMetadata'
-    }]
+    }],
+    'sleep_subtitles': 5,
+    'sleep_requests': 0.75,
+    'sleep_interval': 10,
+    'max_sleep_interval': 20,
 }
 
 def get_image(url: str) -> Image.Image:
